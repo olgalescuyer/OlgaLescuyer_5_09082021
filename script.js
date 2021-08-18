@@ -15,6 +15,6 @@ request.send()
 var data = JSON.parse(this.response)
 
 data.forEach(() => {
-    // Log each movie's title
+    // Log each 
     console.log()
 })
