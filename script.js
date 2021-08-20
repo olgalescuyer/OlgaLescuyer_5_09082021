@@ -1,7 +1,7 @@
-// Create a request variable and assign a new XMLHttpRequest object to it.
+// Create a request variable and assign a new XMLHttpRequest object to it. ICI- Déclarer une variable nommée request = création un nouveau objet.
 var request = new XMLHttpRequest()
 
-// Initialisation. Configuration de la requête. Open a new connection, using the GET request on the URL endpoint
+// Initialisation. Configuration de la requête. Async car 'true'. Open a new connection, using the GET request on the URL endpoint
 request.open('GET', 'http://localhost:3000/api/teddies', true)
 
 request.onload = function() {
@@ -19,5 +19,5 @@ request.onload = function() {
     }
 }
 
-// Envoyer la requête. GET n'a pas de body ->(0) . Send request
+// Envoyer la requête. Variable - request. . Methode - send. GET n'a pas de body ->(0) 
 request.send()
