@@ -124,8 +124,8 @@ requestCam.onload = function() {
             h3.textContent = camera.name
 
             const p = document.createElement('p')
-            camera.description = camera.description.substring(0, 300)
-            p.textContent = `${camera.description}...`
+            camera.price = camera.price / 100
+            p.textContent = `${camera.price}€`
 
             containerCam.appendChild(card)
             card.appendChild(img)
@@ -167,8 +167,8 @@ requestFur.onload = function() {
             h3.textContent = meubles.name
 
             const p = document.createElement('p')
-            meubles.description = meubles.description.substring(0, 300)
-            p.textContent = `${meubles.description}...`
+            meubles.price = meubles.price / 100
+            p.textContent = `${meubles.price}€`
 
             containerFur.appendChild(card)
             card.appendChild(img)
