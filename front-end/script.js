@@ -48,7 +48,9 @@ containerFur.classList.add('content__box');
 
 sectionContent.appendChild(containerFur);
 
-//----------------------
+// --------------
+
+
 app.appendChild(header);
 app.appendChild(sectionContent);
 
