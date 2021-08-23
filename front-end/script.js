@@ -77,8 +77,8 @@ request.onload = function() {
             img.src = teddy.imageUrl
             img.classList.add('content__images')
 
-            const h3 = document.createElement('h3')
-            h3.textContent = teddy.name
+            const h6 = document.createElement('h6')
+            h6.textContent = teddy.name
 
             const p = document.createElement('p')
             teddy.price = teddy.price / 100
@@ -86,7 +86,7 @@ request.onload = function() {
 
             containerTeddy.appendChild(card)
             card.appendChild(img)
-            card.appendChild(h3)
+            card.appendChild(h6)
             card.appendChild(p)
         })
     } else {
@@ -120,8 +120,8 @@ requestCam.onload = function() {
             const img = document.createElement('img')
             img.src = camera.imageUrl
 
-            const h3 = document.createElement('h3')
-            h3.textContent = camera.name
+            const h6 = document.createElement('h6')
+            h6.textContent = camera.name
 
             const p = document.createElement('p')
             camera.price = camera.price / 100
@@ -129,7 +129,7 @@ requestCam.onload = function() {
 
             containerCam.appendChild(card)
             card.appendChild(img)
-            card.appendChild(h3)
+            card.appendChild(h6)
             card.appendChild(p)
         })
     } else {
@@ -163,8 +163,8 @@ requestFur.onload = function() {
             const img = document.createElement('img')
             img.src = meubles.imageUrl
 
-            const h3 = document.createElement('h3')
-            h3.textContent = meubles.name
+            const h6 = document.createElement('h6')
+            h6.textContent = meubles.name
 
             const p = document.createElement('p')
             meubles.price = meubles.price / 100
@@ -172,7 +172,7 @@ requestFur.onload = function() {
 
             containerFur.appendChild(card)
             card.appendChild(img)
-            card.appendChild(h3)
+            card.appendChild(h6)
             card.appendChild(p)
         })
     } else {
