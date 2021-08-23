@@ -1,3 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+header {
+  background-color: #f3e9f1;
+}
 
+.header__box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.content__box {
+  display: flex;
+}
+
+.card {
+  margin: 0.8rem;
+}
+
+.header__logo {
+  width: 200px;
+  height: auto;
+}
+
+.header__logo-panier {
+  height: 2rem;
+  width: auto;
+}
 
 /*# sourceMappingURL=style.css.map */
