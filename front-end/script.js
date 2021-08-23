@@ -1,5 +1,6 @@
 const app = document.getElementById('root');
 
+// HEADER = headerContainer (logo + logoPanier)
 const header = document.createElement('header');
 
 const logo = document.createElement('img');
@@ -19,9 +20,11 @@ header.appendChild(headerContainer);
 headerContainer.appendChild(logo);
 headerContainer.appendChild(logoPanier);
 
+// SECTION-CONTENT = 3 container :
 const sectionContent = document.createElement('section');
 sectionContent.setAttribute('class', 'content');
 
+// --1 container 
 const containerTeddy = document.createElement('div');
 
 containerTeddy.setAttribute('class', 'container');
@@ -29,6 +32,7 @@ containerTeddy.classList.add('content__box');
 
 sectionContent.appendChild(containerTeddy);
 
+// --2 container
 const containerCam = document.createElement('div');
 
 containerCam.setAttribute('class', 'container');
@@ -36,6 +40,7 @@ containerCam.classList.add('content__box');
 
 sectionContent.appendChild(containerCam);
 
+// --3 container
 const containerFur = document.createElement('div');
 
 containerFur.setAttribute('class', 'container');
@@ -43,6 +48,7 @@ containerFur.classList.add('content__box');
 
 sectionContent.appendChild(containerFur);
 
+//----------------------
 app.appendChild(header);
 app.appendChild(sectionContent);
 
@@ -67,15 +73,15 @@ request.onload = function() {
             const card = document.createElement('div')
             card.setAttribute('class', 'card')
 
-            const h1 = document.createElement('h1')
-            h1.textContent = teddy.name
+            const h3 = document.createElement('h3')
+            h3.textContent = teddy.name
 
             const p = document.createElement('p')
             teddy.description = teddy.description.substring(0, 300)
-            p.textContent = `${teddy.description}...`
+            p.textContent = `${teddy.description}`
 
             containerTeddy.appendChild(card)
-            card.appendChild(h1)
+            card.appendChild(h3)
             card.appendChild(p)
         })
     } else {
@@ -106,15 +112,15 @@ requestCam.onload = function() {
             const card = document.createElement('div')
             card.setAttribute('class', 'card')
 
-            const h1 = document.createElement('h1')
-            h1.textContent = camera.name
+            const h3 = document.createElement('h3')
+            h3.textContent = camera.name
 
             const p = document.createElement('p')
             camera.description = camera.description.substring(0, 300)
             p.textContent = `${camera.description}...`
 
             containerCam.appendChild(card)
-            card.appendChild(h1)
+            card.appendChild(h3)
             card.appendChild(p)
         })
     } else {
@@ -145,15 +151,15 @@ requestFur.onload = function() {
             const card = document.createElement('div')
             card.setAttribute('class', 'card')
 
-            const h1 = document.createElement('h1')
-            h1.textContent = meubles.name
+            const h3 = document.createElement('h3')
+            h3.textContent = meubles.name
 
             const p = document.createElement('p')
             meubles.description = meubles.description.substring(0, 300)
             p.textContent = `${meubles.description}...`
 
             containerFur.appendChild(card)
-            card.appendChild(h1)
+            card.appendChild(h3)
             card.appendChild(p)
         })
     } else {
