@@ -15,17 +15,23 @@ header {
 }
 
 .card {
-  margin: 0.8rem;
+  margin: 0.5rem 0.25rem 0.25rem 0.25rem;
+  flex: 20%;
+  overflow: hidden;
 }
 
 .header__logo {
-  width: 200px;
+  width: 12.5rem;
   height: auto;
 }
 
 .header__logo-panier {
   height: 2rem;
   width: auto;
+}
+
+.content__images {
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

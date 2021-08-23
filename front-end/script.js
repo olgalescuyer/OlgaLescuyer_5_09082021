@@ -75,13 +75,14 @@ request.onload = function() {
 
             const img = document.createElement('img')
             img.src = teddy.imageUrl
+            img.classList.add('content__images')
 
             const h3 = document.createElement('h3')
             h3.textContent = teddy.name
 
             const p = document.createElement('p')
-            teddy.description = teddy.description.substring(0, 300)
-            p.textContent = `${teddy.description}`
+            teddy.price = teddy.price / 100
+            p.textContent = `${teddy.price}€`
 
             containerTeddy.appendChild(card)
             card.appendChild(img)
