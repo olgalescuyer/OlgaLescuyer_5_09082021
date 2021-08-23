@@ -73,6 +73,9 @@ request.onload = function() {
             const card = document.createElement('div')
             card.setAttribute('class', 'card')
 
+            const img = document.createElement('img')
+            img.src = teddy.imageUrl
+
             const h3 = document.createElement('h3')
             h3.textContent = teddy.name
 
@@ -81,6 +84,7 @@ request.onload = function() {
             p.textContent = `${teddy.description}`
 
             containerTeddy.appendChild(card)
+            card.appendChild(img)
             card.appendChild(h3)
             card.appendChild(p)
         })
@@ -112,6 +116,9 @@ requestCam.onload = function() {
             const card = document.createElement('div')
             card.setAttribute('class', 'card')
 
+            const img = document.createElement('img')
+            img.src = camera.imageUrl
+
             const h3 = document.createElement('h3')
             h3.textContent = camera.name
 
@@ -120,6 +127,7 @@ requestCam.onload = function() {
             p.textContent = `${camera.description}...`
 
             containerCam.appendChild(card)
+            card.appendChild(img)
             card.appendChild(h3)
             card.appendChild(p)
         })
@@ -151,6 +159,9 @@ requestFur.onload = function() {
             const card = document.createElement('div')
             card.setAttribute('class', 'card')
 
+            const img = document.createElement('img')
+            img.src = meubles.imageUrl
+
             const h3 = document.createElement('h3')
             h3.textContent = meubles.name
 
@@ -159,6 +170,7 @@ requestFur.onload = function() {
             p.textContent = `${meubles.description}...`
 
             containerFur.appendChild(card)
+            card.appendChild(img)
             card.appendChild(h3)
             card.appendChild(p)
         })
