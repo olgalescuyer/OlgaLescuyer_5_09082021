@@ -1,11 +1,12 @@
-.content__box {
-    display: flex;
-}
-
 .card {
     margin: .5rem .25rem .25rem .25rem;
     flex: 20%;
     overflow: hidden;
+    height: 200px;
     border-radius: 0;
-    border: none;
+    border: .3rem solid white;
+}
+
+.content__box {
+    display: flex;
 }

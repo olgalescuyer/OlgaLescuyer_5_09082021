@@ -27,7 +27,7 @@ sectionContent.setAttribute('class', 'content');
 // --1 container 
 const containerTeddy = document.createElement('div');
 
-containerTeddy.setAttribute('class', 'container');
+containerTeddy.setAttribute('class', 'container-fluid');
 containerTeddy.classList.add('content__box');
 
 sectionContent.appendChild(containerTeddy);
@@ -84,7 +84,7 @@ request.onload = function() {
 
             const p = document.createElement('p')
             teddy.price = teddy.price / 100
-            p.textContent = `${teddy.price}€`
+            p.textContent = `Prix: ${teddy.price}€`
 
             containerTeddy.appendChild(card)
             card.appendChild(img)
@@ -127,7 +127,7 @@ requestCam.onload = function() {
 
             const p = document.createElement('p')
             camera.price = camera.price / 100
-            p.textContent = `${camera.price}€`
+            p.textContent = `Prix: ${camera.price}€`
 
             containerCam.appendChild(card)
             card.appendChild(img)
@@ -170,7 +170,7 @@ requestFur.onload = function() {
 
             const p = document.createElement('p')
             meubles.price = meubles.price / 100
-            p.textContent = `${meubles.price}€`
+            p.textContent = `Prix: ${meubles.price}€`
 
             containerFur.appendChild(card)
             card.appendChild(img)
