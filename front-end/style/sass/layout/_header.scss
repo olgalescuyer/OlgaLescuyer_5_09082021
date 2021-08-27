@@ -2,9 +2,38 @@ header {
     background-color: $bg-color-primary;
 }
 
-.header__box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
+.header__subtitle {
+    color: $font-color;
+    font-size: 1.2rem;
+    &:hover {
+        opacity: .8;
+        color: inherit;
+    }
+}
+
+.header__btn-toggle {
+    border: none;
+    font-size: 2rem;
+    &:active {
+        box-shadow: none;
+    }
+    &:focus {
+        border: none;
+        box-shadow: none;
+    }
+}
+
+.header__icon-toggler {
+    color: $font-color;
+}
+
+@media (max-width: 991px) {
+    .nav {
+        flex-direction: column;
+    }
+    .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0 1.1rem;
+    }
 }
