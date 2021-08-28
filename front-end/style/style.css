@@ -12,8 +12,10 @@ a:hover {
   color: inherit;
 }
 
-button {
+button,
+input {
   border: none;
+  outline: none;
 }
 
 .header {
@@ -92,6 +94,17 @@ button {
     display: flex;
     justify-content: space-between;
   }
+}
+
+.recherche {
+  position: relative;
+  min-width: 300px;
+}
+.recherche__label {
+  position: absolute;
+}
+.recherche__input {
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

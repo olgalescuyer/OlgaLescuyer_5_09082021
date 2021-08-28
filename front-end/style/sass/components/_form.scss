@@ -1,0 +1,10 @@
+.recherche {
+    position: relative;
+    min-width: 300px;
+    &__label {
+        position: absolute;
+    }
+    &__input {
+        width: 100%;
+    }
+}
