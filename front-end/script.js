@@ -1,8 +1,6 @@
-const app = document.getElementById('root');
-
 let allCameras = [];
 
-// Appel API, je recupere les donnéess das le tableau:
+// Appel API, je recupère les donnéess dans le tableau [allCameras] :
 function fetchCamerasBase() {
     fetch("http://localhost:3000/api/cameras")
         .then(reponse => reponse.json())
@@ -22,7 +20,7 @@ fetchCamerasBase();
 
 
 
-
+// const app = document.getElementById('root');
 /* // Create a request variable and assign a new XMLHttpRequest object to it.
 // var requestCam = new XMLHttpRequest()
 
