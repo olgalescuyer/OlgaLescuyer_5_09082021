@@ -1,33 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 /* mise en page est FlexBox : */
 .main-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.nav-link:focus,
-nav-link:hover {
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
 a {
   text-decoration: none;
   color: inherit;
 }
-
 a:hover {
   color: inherit;
 }
 
-header {
-  background-color: #f3e9f1;
+button {
+  border: none;
 }
 
+.header {
+  background-color: #f3e9f1;
+}
 .header__subtitle {
   color: #261624;
   font-size: 1.1rem;
@@ -37,59 +28,58 @@ header {
   opacity: 0.8;
   color: inherit;
 }
-
-.header__btn-toggle {
-  border: none;
+.header__subtitle:focus {
+  color: inherit;
+  opacity: 0.8;
+}
+.header__btn-toggler {
   font-size: 2rem;
 }
-.header__btn-toggle:active {
-  box-shadow: none;
-}
-.header__btn-toggle:focus {
-  border: none;
-  box-shadow: none;
-}
-
 .header__icon-toggler {
-  color: #261624;
-}
-
-@media (max-width: 991px) {
-  .nav {
-    flex-direction: column;
-  }
-
-  .container {
-    max-width: 100%;
-    margin: 0;
-    padding: 0 1.1rem;
-  }
+  color: inherit;
 }
 .header__logo {
   width: 12.5rem;
   height: auto;
 }
-
-.header__logo-panier {
-  height: 2rem;
-  width: auto;
+@media (max-width: 991px) {
+  .header .nav {
+    flex-direction: column;
+  }
+  .header .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0 1.1rem;
+  }
+  .header .header__subtitle {
+    text-align: center;
+    border-color: 1px solide #261624;
+  }
+}
+@media (min-width: 992px) {
+  .header .header__btn-toggler {
+    visibility: hidden;
+  }
+  .header .nav__nav-item {
+    border-top: 0;
+  }
 }
 
-.logo-panier {
-  width: 3rem;
+.nav__nav-item {
+  border-top: 1px solid #bcb4bc;
 }
 
-.card {
-  margin: 0.5rem 0.25rem 0.25rem 0.25rem;
-  flex: 20%;
-  overflow: hidden;
-  height: 200px;
-  border-radius: 0;
-  border: 0.3rem solid white;
+.section-content {
+  background-color: #bcb4bc;
+  padding: 1.3rem;
 }
-
-.content__box {
-  display: flex;
+.section-content__container {
+  min-height: 18.75rem;
+}
+@media (min-width: 992px) {
+  .section-content__container {
+    display: flex;
+  }
 }
 
 .footer {
