@@ -4,7 +4,8 @@ header {
 
 .header__subtitle {
     color: $font-color;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: bolder;
     &:hover {
         opacity: .8;
         color: inherit;
@@ -36,4 +37,18 @@ header {
         margin: 0;
         padding: 0 1.1rem;
     }
+}
+
+.header__logo {
+    width: 12.5rem;
+    height: auto;
+}
+
+.header__logo-panier {
+    height: 2rem;
+    width: auto;
+}
+
+.logo-panier {
+    width: 3rem;
 }
