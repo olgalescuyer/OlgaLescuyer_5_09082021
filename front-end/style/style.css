@@ -12,8 +12,10 @@ a:hover {
   color: inherit;
 }
 
-button {
+button,
+input {
   border: none;
+  outline: none;
 }
 
 .header {
