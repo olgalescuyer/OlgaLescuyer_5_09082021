@@ -1,0 +1,11 @@
+.footer {
+    background-color: #3e252f;
+    color: $bg-color-primary;
+    padding: 1.3rem;
+    &__nav {
+        @media (min-width: 992px) {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

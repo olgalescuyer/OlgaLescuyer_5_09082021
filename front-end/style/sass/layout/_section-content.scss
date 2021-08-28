@@ -1,12 +1,10 @@
-.card {
-    margin: .5rem .25rem .25rem .25rem;
-    flex: 20%;
-    overflow: hidden;
-    height: 200px;
-    border-radius: 0;
-    border: .3rem solid white;
-}
-
-.content__box {
-    display: flex;
+.section-content {
+    background-color: $bg-color-secondary;
+    padding: 1.3rem;
+    &__container {
+        min-height: 18.75rem;
+        @media (min-width: 992px) {
+            display: flex;
+        }
+    }
 }
