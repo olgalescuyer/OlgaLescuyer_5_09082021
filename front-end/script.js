@@ -1,5 +1,8 @@
 let allCameras = [];
 
+
+
+
 // Appel API, je recupère les donnéess dans le tableau [allCameras] :
 function fetchCamerasBase() {
     fetch("http://localhost:3000/api/cameras")
@@ -8,58 +11,36 @@ function fetchCamerasBase() {
             console.log(allCameras);
 
 
-        })
 
+
+
+        })
 }
 fetchCamerasBase();
 
+// template index.html :
+/* htmlElements += `
+ <h1 class="content__title h1 text-center">Caméras vintages</h1>
 
+                    <div class="content__box">
 
+                        <div class="card content__card">
 
+                            <div class="card__image">
+                                <img src="" class="card-img-top" alt="appareil photo">
+                            </div>
 
+                            <div class="card-body">
 
+                                <h5 class="card-title"></h5>
+                                <p class="card-text"><span></span><br><span>TVA inclus</span></p>
 
+                                <div class="text-end"><a href="product.html" class="btn btn_principale">En savoir plus</a></div>
 
-// const app = document.getElementById('root');
-/* // Create a request variable and assign a new XMLHttpRequest object to it.
-// var requestCam = new XMLHttpRequest()
+                            </div>
 
-// // Initialisation. Configuration de la requête. Open a new connection, using the GET request on the URL endpoint
-// requestCam.open('GET', 'http://localhost:3000/api/cameras', true)
+                        </div>
 
-// requestCam.onload = function() {
-//     // Ecouter un événement. onload- pour des erreurs. Begin accessing JSON data here
-
-//     // Begin accessing JSON data here
-//     var dataCam = JSON.parse(this.response)
-
-//     if (requestCam.status >= 200 && requestCam.status < 400) {
-//         dataCam.forEach((camera) => {
-//             const card = document.createElement('div')
-//             card.setAttribute('class', 'card')
-
-//             const img = document.createElement('img')
-//             img.src = camera.imageUrl
-
-//             const h6 = document.createElement('h6')
-//             h6.textContent = camera.name
-
-//             const p = document.createElement('p')
-//             camera.price = camera.price / 100
-//             p.textContent = `Prix: ${camera.price}€`
-
-//             containerCam.appendChild(card)
-//             card.appendChild(img)
-//             card.appendChild(h6)
-//             card.appendChild(p)
-//         })
-//     } else {
-//         const errorMessage = document.createElement('marquee')
-//         errorMessage.textContent = `Gah, it's not working!`
-//         app.appendChild(errorMessage)
-//     }
-// }
-
-
-// // Envoyer la requête. GET n'a pas de body ->(0) . Send request
-// requestCam.send()*/
+                    </div>
+` 
+ */
