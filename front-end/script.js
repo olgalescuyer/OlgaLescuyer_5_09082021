@@ -1,8 +1,5 @@
 let allCameras = [];
 
-
-
-
 // Appel API, je recupère les donnéess dans le tableau [allCameras] :
 function fetchCamerasBase() {
     fetch("http://localhost:3000/api/cameras")
@@ -10,21 +7,13 @@ function fetchCamerasBase() {
         .then((allCameras) => {
             console.log(allCameras);
 
-
-
-
-
         })
 }
 fetchCamerasBase();
 
 // template index.html :
-/* htmlElements += `
- <h1 class="content__title h1 text-center">Caméras vintages</h1>
-
-                    <div class="content__box">
-
-                        <div class="card content__card">
+/*
+                         <div class="card content__card">
 
                             <div class="card__image">
                                 <img src="" class="card-img-top" alt="appareil photo">
@@ -41,6 +30,4 @@ fetchCamerasBase();
 
                         </div>
 
-                    </div>
-` 
  */
