@@ -1,10 +1,30 @@
-.section-content {
+.content {
     background-color: $bg-color-secondary;
     padding: 1.3rem;
+    min-height: 30rem;
     &__container {
-        min-height: 18.75rem;
-        @media (min-width: 992px) {
+        height: auto;
+    }
+    &__title {
+        padding-bottom: .6rem;
+    }
+    &__box {
+        @media (min-width: 576px) {
             display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+    }
+    &__card {
+        border: 2px solid #fff;
+        margin-bottom: .6rem;
+        max-width: 100%;
+        @media (min-width: 576px) {
+            max-width: 48%;
+            margin-right: .6rem;
+        }
+        @media (min-width: 992px) {
+            width: 20%;
         }
     }
 }
