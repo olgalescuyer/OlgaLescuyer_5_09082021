@@ -1,12 +1,3 @@
-function createNode(element) {
-    return document.createElement(element);
-}
-
-function append(parent, el) {
-    return parent.appendChild(el);
-}
-
-const app = document.getElementById('root');
 const url = 'http://localhost:3000/api/cameras';
 
 let htmlElements = "";
@@ -14,8 +5,6 @@ let htmlElements = "";
 fetch(url)
     .then((resp) => resp.json())
     .then(function(data) {
-
-
 
         data.forEach((camera) => {
 
