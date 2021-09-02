@@ -9,11 +9,9 @@ fetch(url)
         data.forEach((camera) => {
 
             // console.log(camera.name);
-            // console.log(camera.price);
+            console.log(camera);
 
             let price = (camera.price / 100).toFixed(2);
-
-
 
             htmlElements += ` 
             <div class="card content__card">
@@ -26,9 +24,9 @@ fetch(url)
 
                 <h5 class="card-title">` + camera.name + `</h5>
 
-                <p class="card-text"><span class="price">` + price + ` € ` + `</span><br><span>TVA incluse</span></p>
+                <p class="card-text"><span class="price">` + price + ` € TVA incluse</p>
 
-                <div class="text-end"><a href="product.html" class="btn btn_principal">En savoir plus</a></div>
+                <div class="text-end"><a href="product.html" class="btn btn_principal" data-id="` + camera._id + `">En savoir plus</a></div>
 
             </div>
             </div>
