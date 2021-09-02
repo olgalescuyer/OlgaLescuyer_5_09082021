@@ -1,6 +1,7 @@
 .card__image {
     height: 70%;
     overflow: hidden;
+    padding: 1rem 1rem 0;
     @media (min-width: 576px) {
         height: 200px;
     }
