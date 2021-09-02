@@ -11,7 +11,8 @@ fetch(url)
             // console.log(camera.name);
             // console.log(camera.price);
 
-            let price = (camera.price / 100);
+            let price = (camera.price / 100).toFixed(2);
+
 
 
             htmlElements += ` 
