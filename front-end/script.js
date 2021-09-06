@@ -1,38 +1,66 @@
+// Je crée const pour url de l'API :
 const url = 'http://localhost:3000/api/cameras';
 
+// Je déclare une variable globale qui va introduire mon template da ns la page d'accueil dès que les objets obtenus par fetch, transformés en json, lus et assignés/distrubués dans 'arrow function' + forEach :
 let htmlElements = "";
 
+// fetch va retourner la promesse :
 fetch(url)
-    .then((resp) => resp.json())
-    .then(function(data) {
 
+// Ici la reponse réçue dans la promesse je transforme en json format à l'aide de 'arrow function' :
+.then((resp) => resp.json())
+
+// Ensuite, dans la promesse je crée une fonction avec un argument data qui contient une boucle forEach :
+.then(function(data) {
+
+        // La boucle forEach pour chaque objet de 'data' contient une arrow function que récupère les items de tableau 'data' et introduit les items de table dans mon template html :
         data.forEach((camera) => {
 
-            // console.log(camera.name);
-            console.log(camera);
+            // Je logue pour controler des objets reçus :
+            // console.log(camera);
 
-            let price = (camera.price / 100).toFixed(2);
+            // Je transforme prix reçu :
 
+            // let price = (camera.price / 100).toFixed(2);
+            // ça donne un string comme résultat
+
+            let price = camera.price / 100;
+            // console.log(priceBrut);
+            // ça reste un nombre
+
+            // let price = priceBrut.toFixed(2);
+            // console.log(price);
+            // pourqoui ça devient string ???
+
+            // soit ? :
+            // let price = priceBrut + ",00";
+            // console.log(price);
+
+            // Mon template :
             htmlElements += ` 
-            <div class="card content__card">
+            <div class="card content__card content__card_index">
 
             <div class="card__image">
-                <img src="` + camera.imageUrl + `" class="card-img-top" alt="appareil photo">
+                <img src="` + camera.imageUrl + `" class="img-fluid " alt="appareil photo">
             </div>
 
             <div class="card-body">
 
                 <h5 class="card-title">` + camera.name + `</h5>
 
-                <p class="card-text"><span class="price">` + price + ` € TVA incluse</p>
-
-                <div class="text-end"><a href="product.html" class="btn btn_principal" data-id="` + camera._id + `">En savoir plus</a></div>
+                <p class="card-text"><span class="price">` + price + `€ TVA incluse</span></p>
+             
+                <div class="text-center"><a href=" product.html?` + camera._id + `" class="btn button-link redirect" title="cliquer pour aller à la page de produit" id="` + camera._id + `">En savoir plus</a></div>
 
             </div>
             </div>
              `
         })
+
+        // Je crée une variable locale pour l'acces à la DOM + j'assigne  :
         let allCameras = document.getElementById('root');
+
+        // J'injecte mon template à l'aide de la propriété innerHTML :
         allCameras.innerHTML = htmlElements;
 
     })
@@ -40,25 +68,30 @@ fetch(url)
         console.log(error);
     });
 
+// console.log(idProduct);
 
-// template index.html :
-/*
-                <div class="card content__card">
+// Redirect à la page de produit 
 
-                            <div class="card__image">
-                                <img src="" class="card-img-top" alt="appareil photo">
-                            </div>
+// document.querySelector('.redirect')
+//     .addEventListener('click', () => {
+//         window.location.href = "";
+//     })
 
-                            <div class="card-body">
+// ???????????????????????                  'http://localhost:3000/api/cameras' + ':' + _id 
 
-                                <h5 class="card-title"></h5>
+// Récupération de la chaine de requête dans l'url :
+const queryString_url_id = window.location.search;
+// console.log(queryString_url_id);
 
-                                <p class="card-text"><span class="price"></span><br><span>TVA inclus</span></p>
+// pour couper le point d'interrogation :
+const id = queryString_url_id.slice(1);
+// console.log(id);
 
-                                <div class="text-end"><a href="product.html" class="btn btn_principal">En savoir plus</a></div>
+// Afficher le produit (de l'objet) qui a été sélectionné par l'id :
+let response = fetch(`http://localhost:3000/api/cameras/${id}`)
+    // console.log(response);
+    .then((resp) => response.json())
+    .then(function(dataProduct) => {
 
-                            </div>
-                </div>
-                    
-
- */
+    })
+    // La structure html pour la page de produit :
