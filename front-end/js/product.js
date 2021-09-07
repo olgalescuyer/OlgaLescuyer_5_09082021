@@ -6,12 +6,14 @@ const queryString_url_id = window.location.search;
 const id = queryString_url_id.slice(1);
 // console.log(id);
 
+
+
 // Je crée une variable + id récupéré-coupé :
 let urlProduct = `http://localhost:3000/api/cameras/${id}`;
 
-let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
-
 let htmlElementsProduct = "";
+
+let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 
 // Afficher le produit (de l'objet) qui a été sélectionné par l'id :
 fetch(urlProduct)
@@ -19,8 +21,9 @@ fetch(urlProduct)
 .then((resp) => resp.json())
 
 .then(function(data) {
-
         console.log(data);
+
+        data.lenses.forEach(element => console.log(element));
 
 
         htmlElementsProduct += `
@@ -41,10 +44,7 @@ fetch(urlProduct)
                             <label for="list-lenses">Lenses disponibles :</label>
         
                             <select name="list-lenses" id="list-lenses" class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="0">One</option>
-                                <option value="1">Two</option>
-                                <option value="2">Three</option>
+                               
                               </select>
         
                             <button type="button" class="btn">Ajouter au panier</button>
@@ -107,7 +107,7 @@ fetch(urlProduct)
         console.log(error);
     });
 
-// La structure html pour la page de produit :
+
 
 /*
      <div class="card">
