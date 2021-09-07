@@ -6,7 +6,7 @@ const queryString_url_id = window.location.search;
 const id = queryString_url_id.slice(1);
 // console.log(id);
 
-
+let innerSelect = "";
 
 // Je crée une variable + id récupéré-coupé :
 let urlProduct = `http://localhost:3000/api/cameras/${id}`;
@@ -22,9 +22,6 @@ fetch(urlProduct)
 
 .then(function(data) {
         console.log(data);
-
-        data.lenses.forEach(element => console.log(element));
-
 
         htmlElementsProduct += `
         <div class="card">
@@ -100,7 +97,15 @@ fetch(urlProduct)
         let product = document.querySelector('#root-product');
         product.innerHTML = htmlElementsProduct;
 
+        data.lenses.forEach((element) => {
 
+            console.log(element)
+            innerSelect += `<option value="${element}">${element}</option>`
+
+        });
+
+        let getIdSelect = document.querySelector('#list-lenses');
+        getIdSelect.innerHTML = innerSelect;
 
     })
     .catch(function(error) {
