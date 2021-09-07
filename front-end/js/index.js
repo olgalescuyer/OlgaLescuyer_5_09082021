@@ -3,6 +3,7 @@ const url = 'http://localhost:3000/api/cameras';
 
 // Je déclare une variable globale qui va introduire mon template da ns la page d'accueil dès que les objets obtenus par fetch, transformés en json, lus et assignés/distrubués dans 'arrow function' + forEach :
 let htmlElements = "";
+let htmlElementsProduct = "";
 
 // fetch va retourner la promesse :
 fetch(url)
@@ -19,7 +20,7 @@ fetch(url)
             // Je logue pour controler des objets reçus :
             // console.log(camera);
 
-            // Je transforme prix reçu :
+            // Je transforme prix reçu (faire un fonction ?):
 
             // let price = (camera.price / 100).toFixed(2);
             // ça donne un string comme résultat
@@ -68,7 +69,7 @@ fetch(url)
         console.log(error);
     });
 
-// console.log(idProduct);
+
 
 // Redirect à la page de produit 
 
@@ -77,21 +78,4 @@ fetch(url)
 //         window.location.href = "";
 //     })
 
-// ???????????????????????                  'http://localhost:3000/api/cameras' + ':' + _id 
-
-// Récupération de la chaine de requête dans l'url :
-const queryString_url_id = window.location.search;
-// console.log(queryString_url_id);
-
-// pour couper le point d'interrogation :
-const id = queryString_url_id.slice(1);
-// console.log(id);
-
-// Afficher le produit (de l'objet) qui a été sélectionné par l'id :
-let response = fetch(`http://localhost:3000/api/cameras/${id}`)
-    // console.log(response);
-    .then((resp) => response.json())
-    .then(function(dataProduct) => {
-
-    })
-    // La structure html pour la page de produit :
+// ???????????????????????                  'http://localhost:3000/api/cameras' + ':' + _id
