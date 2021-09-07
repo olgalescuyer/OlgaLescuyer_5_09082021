@@ -3,7 +3,6 @@ const url = 'http://localhost:3000/api/cameras';
 
 // Je déclare une variable globale qui va introduire mon template da ns la page d'accueil dès que les objets obtenus par fetch, transformés en json, lus et assignés/distrubués dans 'arrow function' + forEach :
 let htmlElements = "";
-let htmlElementsProduct = "";
 
 // fetch va retourner la promesse :
 fetch(url)
