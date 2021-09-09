@@ -21,8 +21,6 @@ fetch(url)
             // Je logue pour controler des objets reçus :
             // console.log(camera);
 
-
-
             // Mon template :
             htmlElements += ` 
             <div class="card content__card content__card_index">
@@ -35,7 +33,7 @@ fetch(url)
 
                 <h5 class="card-title">` + camera.name + `</h5>
 
-                <p class="card-text"><span class="price">` + euro.format((camera.price) / 100) + `€ TVA incluse</span></p>
+                <p class="card-text"><span class="price">` + euro.format((camera.price) / 100) + ` TVA incluse</span></p>
              
                 <div class="text-center"><a href=" product.html?` + camera._id + `" class="btn button-link redirect" title="cliquer pour aller à la page de produit" id="` + camera._id + `">En savoir plus</a></div>
 
@@ -54,14 +52,3 @@ fetch(url)
     .catch(function(error) {
         console.log(error);
     });
-
-
-
-// Redirect à la page de produit 
-
-// document.querySelector('.redirect')
-//     .addEventListener('click', () => {
-//         window.location.href = "";
-//     })
-
-// ???????????????????????                  'http://localhost:3000/api/cameras' + ':' + _id
