@@ -1,7 +1,14 @@
 /* mise en page est FlexBox : */
+body,
+html {
+  height: 100%;
+  color: #261624;
+}
+
 .main-wrapper {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 a {
