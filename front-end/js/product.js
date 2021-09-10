@@ -8,6 +8,8 @@ const id = queryStringUrlId.slice(1);
 
 let idSelect = "";
 let innerSelect = "";
+let objProduct = {};
+
 
 // Je crée une variable + id récupéré-coupé :
 let urlProduct = `http://localhost:3000/api/cameras/${id}`;
@@ -148,17 +150,42 @@ fetch(urlProduct)
             // Détécter le choix de l'utilisateur et mettre dans un objet :
             let choice = idSelect.value;
 
-            // Récupérer les valeur du formulaire - :
-            let objProduit = {
+            // Récupérer les valeur du formulaire dans un objet :
+            objProduct = {
                 name: name,
                 lense: choice,
                 price: price,
                 quantity: 1,
                 idProduct: idProduct
 
+            };
+
+            //-----------------------------------------------------------localStorage :
+            //Je controle à l'aide de la méthode 'getItem' s'il y a la clé 'product' que je vais créer dans le localStorage; ensuite, je transforme l'objet de produit en JSON + je l'assigne à une variable :
+            let productInLocalStorage = JSON.parse(localStorage.getItem('product'));
+            // console.log(productInLocalStorage);
+            // ça donne null parce que la clé n'existe pas encore, donc je vais créer la clé dans le 'else' ->>
+
+            if (productInLocalStorage) {
+
+                productInLocalStorage.push(objProduct);
+                localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+                console.log(productInLocalStorage);
             }
-            console.log(objProduit);
+            // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
+            else {
+                // Je récupère ma variable transformée en format json dans le tableau : 
+                productInLocalStorage = [];
+                // ensuite, j'envoie le produit séléctionné qui se transforme en json pour aller au localStorage :
+                productInLocalStorage.push(objProduct);
+
+                // Je crée la clé 'product' pour le tableau qui contient le produit choisi au clique + je transforme en json à l'aide de la méthode stringify :
+                localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+                // console.log(productInLocalStorage);
+            }
+
         });
+
 
     })
     .catch(function(error) {
