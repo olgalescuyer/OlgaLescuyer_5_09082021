@@ -10,12 +10,181 @@
     <!--BOOTSTRAP par CDN-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <!--Style-->
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="shortcut icon" type="image/jpg" href="./front-end/img/favicon-min.jpg">
 
-    <title>Panier</title>
+    <!--Style-->
+    <link rel="stylesheet" href="./front-end/style/style.css">
+
+    <title>Orinoco</title>
 </head>
 
 <body>
 
+    <div class="main-wrapper">
+
+        <header class="header">
+
+            <div class="container">
+
+                <nav class="navbar navbar-expand-lg navbar-light ">
+
+                    <a href="index.html" title="Accueil" class="navbar-brand">
+
+                        <img src="./front-end/img/logo-min.png" alt="logo brand" class="header__logo" />
+                    </a>
+
+                    <button class="header__btn-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMenu" aria-expanded="false" aria-controls="collapseMenu">
+                        <span class="navbar-toggler-icon header__icon-toggler"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end header__navbar" id="collapseMenu">
+
+                        <ul class="nav">
+
+                            <li class="nav-item nav__nav-item">
+                                <a class="nav-link header__subtitle" href="#">Votre compte</a>
+                            </li>
+                            <li class="nav-item nav__nav-item">
+                                <a class="nav-link header__subtitle" href="#">Retours et Commandes</a>
+                            </li>
+                            <li class="nav-item nav__nav-item">
+                                <a class="nav-link header__subtitle" href="#">Panier 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                                      </svg>
+                                  </svg>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </nav>
+
+            </div>
+
+        </header>
+
+        <main>
+
+            <section class="content">
+
+                <!--Je vais utiliser JS pour concevoir la page-->
+                <div class="container content__container">
+
+
+
+                    <div class="content__box" id="root-cart">
+
+
+
+                    </div>
+
+                </div>
+
+            </section>
+        </main>
+
+        <footer class="footer">
+
+            <div class=" container footer__nav">
+
+                <div>
+                    <h5>A propos d'Orinoco</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">Qui sommes-nous ?</a>
+                        </li>
+                        <li>
+                            <a href="#">Ori'book</a>
+                        </li>
+                        <li>
+                            <a href="#">Ori'textil</a>
+                        </li>
+                        <li>
+                            <a href="#">Ori'nours</a>
+                        </li>
+                        <li>
+                            <a href="#">Ori'meubles</a>
+                        </li>
+                        <li>
+                            <a href="#">Mentions légales</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div>
+                    <h5>Gagnez de l'argent</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">Vendez sur Orinoco</a>
+                        </li>
+                        <li>
+                            <a href="#">Devenez Partenaire</a>
+                        </li>
+                        <li>
+                            <a href="#">Faites la promotion de vos produits</a>
+                        </li>
+                        <li>
+                            <a href="#">Protection des Vendeurs</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div>
+                    <h5>Acheter</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">Comment acheter</a>
+                        </li>
+                        <li>
+                            <a href="#">Moyens de paiment</a>
+                        </li>
+                        <li>
+                            <a href="#">Tarifs et options de livraison</a>
+                        </li>
+                        <li>
+                            <a href="#">Garantie client Orinoco</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div>
+                    <h5>Aide</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">Espace Sécurité</a>
+                        </li>
+                        <li>
+                            <a href="#">Suivre vos Commandes</a>
+                        </li>
+                        <li>
+                            <a href="#">Retours</a>
+                        </li>
+                        <li>
+                            <a href="#">Service client</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!--Script pour BOOTSTRAP-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!--Mon fichier script-->
+    <script src="./front-end/js/cart.js "></script>
+
 </body>
+
+</html>
