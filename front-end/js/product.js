@@ -6,18 +6,16 @@ const queryStringUrlId = window.location.search;
 const id = queryStringUrlId.slice(1);
 // console.log(id);
 
-let idSelect = "";
+let htmlElementsProduct = "";
 let innerSelect = "";
 let objProduct = {};
-
 
 // Je crée une variable + id récupéré-coupé :
 let urlProduct = `http://localhost:3000/api/cameras/${id}`;
 
-let htmlElementsProduct = "";
-
 // Pour formater le prix du produit :
 let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
+// .toLocalString("EUR", {style : 'currency', currency: 'EUR'})
 
 
 // Afficher le produit (de l'objet) qui a été sélectionné par l'id :
@@ -31,6 +29,7 @@ fetch(urlProduct)
         let name = data.name;
         let price = euro.format((data.price) / 100);
         let idProduct = data._id;
+        // console.log(idProduct);
 
         htmlElementsProduct += `
         <div class="card">
@@ -134,9 +133,8 @@ fetch(urlProduct)
         // }
 
         // J'injecte dans le html :
-
-        idSelect = document.querySelector('#list-lenses');
-        idSelect.innerHTML = innerSelect;
+        let select = document.querySelector('#list-lenses');
+        select.innerHTML = innerSelect;
 
 
         /*-----------------------------Récupération du choix 'au clique' -------------------------------*/
@@ -148,7 +146,7 @@ fetch(urlProduct)
             event.preventDefault();
 
             // Détécter le choix de l'utilisateur et mettre dans un objet :
-            let choice = idSelect.value;
+            let choice = select.value;
 
             // Récupérer les valeur du formulaire dans un objet :
             objProduct = {
@@ -156,7 +154,7 @@ fetch(urlProduct)
                 lense: choice,
                 price: price,
                 quantity: 1,
-                idProduct: idProduct
+                id: idProduct
 
             };
 
@@ -174,7 +172,7 @@ fetch(urlProduct)
             }
             // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
             else {
-                // Je récupère ma variable transformée en format json dans le tableau : 
+                // Je récupère ma variable dans le tableau : 
                 productInLocalStorage = [];
                 // ensuite, j'envoie le produit séléctionné qui se transforme en json pour aller au localStorage :
                 productInLocalStorage.push(objProduct);
