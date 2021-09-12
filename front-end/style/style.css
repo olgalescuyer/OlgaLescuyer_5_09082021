@@ -41,6 +41,21 @@ input {
   color: inherit;
   opacity: 0.8;
 }
+.header__count {
+  font-weight: 400;
+}
+.header__icon {
+  vertical-align: inherit;
+}
+.header__icon_bag-check {
+  top: 4%;
+  left: 30%;
+  transform: scale(1.4);
+  visibility: hidden;
+}
+.header__icon_bag {
+  visibility: visible;
+}
 .header__btn-toggler {
   font-size: 2rem;
 }
