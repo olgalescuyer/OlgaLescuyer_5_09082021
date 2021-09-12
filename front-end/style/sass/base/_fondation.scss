@@ -2,8 +2,9 @@
  
  body,
  html {
-     height: 100%;
      color: $font-color;
+     height: 100%;
+     background-color: $bg-color-secondary;
  }
  
  .main-wrapper {

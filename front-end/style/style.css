@@ -1,8 +1,9 @@
 /* mise en page est FlexBox : */
 body,
 html {
-  height: 100%;
   color: #261624;
+  height: 100%;
+  background-color: #bcb4bc;
 }
 
 .main-wrapper {
@@ -94,12 +95,7 @@ input {
 }
 
 .content {
-  background-color: #bcb4bc;
   padding: 1.3rem;
-  min-height: 30rem;
-}
-.content__container {
-  height: auto;
 }
 .content__title {
   padding-bottom: 0.6rem;
@@ -147,23 +143,52 @@ input {
   }
 }
 
-.button-link {
+.button {
   color: #f3e9f1;
   background-color: #3e252f;
   border-color: #3e252f;
   transition: all 500ms ease-in-out;
-  width: 100%;
 }
-.button-link:hover {
+.button:hover {
   opacity: 0.7;
   transform: scale(1.01);
   color: #f3e9f1;
+}
+.button:focus {
+  box-shadow: inherit;
+}
+
+.accordion-button {
+  color: inherit !important;
+}
+.accordion-button:focus {
+  border-color: inherit;
+  box-shadow: inherit;
+  color: inherit;
+}
+.accordion-button ::after {
+  color: #261624 !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+  color: #261624 !important;
+}
+
+.form__label {
+  padding: 0.375rem 1.25rem 0.375rem 0;
+}
+.form__item {
+  width: inherit;
+}
+.form__item:focus {
+  border-color: inherit;
+  box-shadow: inherit;
+  outline: 0;
 }
 
 .card__image {
   overflow: hidden;
   padding: 1rem 1rem 0;
-  height: 80%;
 }
 @media (min-width: 576px) {
   .card__image_product {
@@ -173,6 +198,9 @@ input {
 .card__image img {
   height: 100%;
   object-fit: cover;
+}
+.card__image-index {
+  height: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,10 +1,28 @@
-.button-link {
+.button {
     @include btn;
     transition: all 500ms ease-in-out;
-    width: 100%;
     &:hover {
         opacity: .7;
         transform: scale(1.01);
         color: $bg-color-primary;
     }
+    &:focus {
+        box-shadow: inherit;
+    }
+}
+
+.accordion-button {
+    color: inherit !important;
+    &:focus {
+        border-color: inherit;
+        box-shadow: inherit;
+        color: inherit;
+    }
+     ::after {
+        color: $font-color !important;
+    }
+}
+
+.accordion-button:not(.collapsed)::after {
+    color: $font-color!important;
 }

@@ -25,7 +25,7 @@ fetch(url)
             htmlElements += ` 
             <div class="card content__card content__card_index">
 
-            <div class="card__image">
+            <div class="card__image card__image-index">
                 <img src="` + camera.imageUrl + `" class="img-fluid " alt="appareil photo">
             </div>
 
@@ -35,7 +35,7 @@ fetch(url)
 
                 <p class="card-text"><span class="price">` + euro.format((camera.price) / 100) + ` TVA incluse</span></p>
              
-                <div class="text-center"><a href=" product.html?` + camera._id + `" class="btn button-link redirect" title="cliquer pour aller à la page de produit" id="` + camera._id + `">En savoir plus</a></div>
+                <div class="text-center"><a href=" product.html?` + camera._id + `" class="btn button w-100" title="cliquer pour aller à la page de produit" id="` + camera._id + `">En savoir plus</a></div>
 
             </div>
             </div>
