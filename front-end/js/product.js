@@ -29,6 +29,7 @@ fetch(urlProduct)
         let name = data.name;
         let price = euro.format((data.price) / 100);
         let idProduct = data._id;
+        let image = data.imageUrl;
         // console.log(idProduct);
 
         htmlElementsProduct += `
@@ -105,8 +106,8 @@ fetch(urlProduct)
         </div>
         `
 
-        let product = document.querySelector('#root-product');
-        product.innerHTML = htmlElementsProduct;
+        let rootProduct = document.querySelector('#root-product');
+        rootProduct.innerHTML = htmlElementsProduct;
 
         // Je crée une boucle pour les options :
         let lenses = data.lenses;
@@ -153,11 +154,13 @@ fetch(urlProduct)
 
             // Récupérer les valeur du formulaire dans un objet :
             objProduct = {
+                image: image,
                 name: name,
                 lense: choice,
                 price: price,
                 quantity: 1,
-                id: idProduct
+                id: idProduct,
+
 
             };
 

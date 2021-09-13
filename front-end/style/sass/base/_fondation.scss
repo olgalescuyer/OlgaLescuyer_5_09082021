@@ -1,9 +1,8 @@
  /* mise en page est FlexBox : */
  
- body,
- html {
-     color: $font-color;
+ body {
      height: 100%;
+     color: $font-color;
      background-color: $bg-color-secondary;
  }
  
