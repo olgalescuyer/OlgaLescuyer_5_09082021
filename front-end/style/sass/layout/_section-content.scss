@@ -27,4 +27,16 @@
             }
         }
     }
+    &__card-cart {
+        background-color: inherit;
+    }
+}
+
+.cart {
+    &__title {
+        background-color: white;
+    }
+    &__button-delete {
+        transform: scale(1.3);
+    }
 }

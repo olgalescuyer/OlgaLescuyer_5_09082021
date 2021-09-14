@@ -4,6 +4,7 @@ console.log(productInLocalStorage);
 
 let htmlElementsCartDummy = "";
 let htmlElementsCart = "";
+let htmlElementsCartProduct = "";
 
 // si le panier est vide :
 if (productInLocalStorage === null) {
@@ -33,59 +34,104 @@ if (productInLocalStorage === null) {
 
 } else {
 
-    productInLocalStorage.forEach((product) => {
-        htmlElementsCart += `
-        <div class="card g-0 bg-white content__card">
-        <span class="cart__title fs-2 p-3 fw-bold">Mon panier : </span>
+    htmlElementsCart = `
 
-        <div class="d-flex ">
-            <div class="cart-element__box w-75 p-3">
-                <div class="row">
-                    <div class="col-3">
-                        <div class="cart__image">
-                            <img src="${product.image}" class="img-fluid">
+    <div class="card bg content__card ">
+
+        <span class="cart__title fs-2 p-3 fw-bold">Mon panier : 
+        </span>
+
+    
+        <div class="d-flex" >
+
+        <div class="w-75" id="root-cart-product"></div> 
+
+
+        <div class="w-25 d-flex " id="root-cart-counter">
+
+        <div class="d-flex  flex-column w-100 h-100 p-3 bg-white ">
+
+        <div class="d-flex flex-column border border-2 border-top-0 border-end-0 border-start-0 p-2">
+            <span class="fs-3 fw-bold">Total</span>
+             <span class="d-flex justify-content-between fs-5">Sous-total <span class=""></span></span>
+            <span class="d-flex justify-content-between fs-5 pb-2">Livraison<span class="">0,00 €</span></span>
+        </div>
+
+        <div class="d-flex flex-column p-2">
+            <span class="fs-4 fw-bold mb-2 d-flex justify-content-between">Total (TVA incluse) <span class=""></span></span>
+            <form class="mt-2" action="">
+                 <button class="btn fs-5 fw-bold w-100 button">COMMANDER</button>
+            </form>
+        </div>
+
+        </div>
+
+        </div>
+
+        
+        </div>
+        
+
+    </div>
+`
+
+    let rootCart = document.querySelector('#root-cart');
+    rootCart.innerHTML = htmlElementsCart;
+
+
+
+    productInLocalStorage.forEach((product) => {
+
+        htmlElementsCartProduct += `
+
+        
+            
+                <div class="row border border-2 border-bottom-0 border-start-0 border-end-0 p-2 g-0">
+                    <div class="col-sm-3 d-flex flex-column justify-content-center p-2 g-0">
+                        <div class="page-cart__image">
+
+                            <div class="page-cart__product-image">
+                            <img src="${product.image}" alt="appareil photo ${product.name}" class="img-fluid ">
+                            </div>
+               
                         </div>
                     </div>
-                    <div class="col-4 d-flex flex-column justify-content-center">
-                        <p>${product.name}</p>
-                        <p>Lentille : ${product.lense}</p>
+                    <div class="col-sm-4 d-flex flex-column justify-content-center p-2">
+                        <p class="fs-3">${product.name}</p>
+                        <p class="fs-5">Lentille : ${product.lense}</p>
                     </div>
-                    <div class="col-1 d-flex flex-column justify-content-center">
-                        <p>X1</p>
+                    <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
+                        <span>X1</span>
                     </div>
-                    <div class="col-3 d-flex flex-column justify-content-center">
-                        <p>Price ${product.price}</p>
+                    <div class="col-sm-3 d-flex flex-column justify-content-center p-2">
+                        <span class="fs-4">Price ${product.price}</span>
                     </div>
-                    <div class="col-1 d-flex flex-column justify-content-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
+
+                        <button class="cart__button-delete" id="${product.id}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                          </svg>
+                            </svg>
+                        </button>
+                       
                     </div>
                 </div>
-            </div>
+            
 
-            <div class="d-flex flex-column w-25 p-3">
-                <div class="d-flex flex-column">
-                    <span class="fs-3 fw-bold">Total</span>
-                    <span class="fs-5">Sous-total </span>
-                    <span class="fs-5">Livraison </span>
-                </div>
-
-                <div class="d-flex flex-column">
-                    <span class="fs-4 fw-bold">Total <small>(TVA incluse)</small> </span>
-                    <form action="">
-                        <button class="btn fs-5 fw-bold button">COMMANDER</button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
+            
+       
+    
         `;
     })
 
 
-    let rootCart = document.querySelector('#root-cart');
-    rootCart.innerHTML = htmlElementsCart;
+    let rootCartProduct = document.querySelector('#root-cart-product');
+    rootCartProduct.innerHTML = htmlElementsCartProduct;
+
+
+
+
+
+
 }

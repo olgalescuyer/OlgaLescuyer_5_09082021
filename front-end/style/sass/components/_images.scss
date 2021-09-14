@@ -1,16 +1,16 @@
-.card__image {
-    overflow: hidden;
-    padding: 1rem 1rem 0;
-    @media (min-width: 576px) {
-        &_product {
-            padding-bottom: 1rem;
+    .card__image {
+        overflow: hidden;
+        padding: 1rem 1rem 0;
+        @media (min-width: 576px) {
+            &_product {
+                padding-bottom: 1rem;
+            }
+        }
+        & img {
+            height: 100%;
+            object-fit: cover;
+        }
+        &-index {
+            height: 100%;
         }
     }
-    & img {
-        height: 100%;
-        object-fit: cover;
-    }
-    &-index {
-        height: 100%;
-    }
-}
