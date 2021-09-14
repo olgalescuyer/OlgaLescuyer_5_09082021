@@ -6,6 +6,7 @@ let htmlElementsCartDummy = "";
 let htmlElementsCart = "";
 let htmlElementsCartProduct = "";
 
+
 // si le panier est vide :
 if (productInLocalStorage === null) {
 
@@ -74,18 +75,13 @@ if (productInLocalStorage === null) {
 
     </div>
 `
-
     let rootCart = document.querySelector('#root-cart');
     rootCart.innerHTML = htmlElementsCart;
-
-
 
     productInLocalStorage.forEach((product) => {
 
         htmlElementsCartProduct += `
-
-        
-            
+           
                 <div class="row border border-2 border-bottom-0 border-start-0 border-end-0 p-2 g-0">
                     <div class="col-sm-3 d-flex flex-column justify-content-center p-2 g-0">
                         <div class="page-cart__image">
@@ -108,7 +104,7 @@ if (productInLocalStorage === null) {
                     </div>
                     <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
 
-                        <button class="cart__button-delete" id="${product.id}">
+                        <button class="cart__button-delete" data-id="${product.id}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -117,21 +113,32 @@ if (productInLocalStorage === null) {
                        
                     </div>
                 </div>
-            
-
-            
-       
-    
+        
         `;
-    })
 
+        // -------------------------------------------------------Supprimer un produit du panier :
+        document.onclick = event => {
+
+            if (event.target.classList.contains('cart__button-delete')) {
+                console.log(event.target.dataset.id);
+                deleteProduct(event.target.dataset.id);
+            }
+        }
+
+        function deleteProduct(id) {
+
+
+            if (id === product.id) {
+
+                document.querySelector('#root-cart-product').remove();
+            }
+
+        }
+
+    })
 
     let rootCartProduct = document.querySelector('#root-cart-product');
     rootCartProduct.innerHTML = htmlElementsCartProduct;
-
-
-
-
 
 
 }

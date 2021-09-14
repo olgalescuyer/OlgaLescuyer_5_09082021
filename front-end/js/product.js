@@ -175,6 +175,18 @@ fetch(urlProduct)
                 productInLocalStorage.push(objProduct);
                 localStorage.setItem('product', JSON.stringify(productInLocalStorage));
                 console.log(productInLocalStorage);
+
+                // ------------------------pour compter des produits ajoutés :
+                console.log(productInLocalStorage.length);
+
+                let count = productInLocalStorage.length;
+                let rootCounter = document.querySelector('.root-counter');
+                rootCounter.innerText = count;
+
+
+
+
+
             }
             // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
             else {
@@ -188,6 +200,9 @@ fetch(urlProduct)
                 // console.log(productInLocalStorage);
             }
 
+
+
+
         });
 
 
@@ -195,3 +210,5 @@ fetch(urlProduct)
     .catch(function(error) {
         console.log(error);
     });
+
+//--------------------------------------------------------Affichage de la somme dans le badge 'panier' de header :
