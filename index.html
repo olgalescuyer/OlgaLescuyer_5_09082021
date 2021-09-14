@@ -10,6 +10,8 @@
     <!--BOOTSTRAP par CDN-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <link rel="shortcut icon" type="image/jpg" href="./front-end/img/favicon-min.jpg">
+
     <!--Style-->
     <link rel="stylesheet" href="./front-end/style/style.css">
 
@@ -46,11 +48,23 @@
                                 <a class="nav-link header__subtitle" href="#">Retours et Commandes</a>
                             </li>
                             <li class="nav-item nav__nav-item">
-                                <a class="nav-link header__subtitle" href="#">Panier 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                                      </svg>
-                                  </svg>
+                                <a class="nav-link header__subtitle" href="cart.html">Panier  
+
+                                    <span class="header__count">( 0 )</span>
+
+                                    <span class="position-relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag header__icon header__icon_bag " viewBox="0 0 16 16">
+                                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                                          </svg> 
+                                       
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check position-absolute header__icon header__icon_bag-check" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                                          </svg>
+                                    </span>
+
+                                   
+
                                 </a>
                             </li>
 
@@ -59,12 +73,6 @@
                     </div>
 
                 </nav>
-                <!-- <form class="recherche">
-
-                                    <label for="recherche" class="recherche__label" id="recherche">Recherche</label>
-                                    <input class="recherche__input" type="text" id="recherche">
-
-                    </form> -->
 
             </div>
 

@@ -6,18 +6,16 @@ const queryStringUrlId = window.location.search;
 const id = queryStringUrlId.slice(1);
 // console.log(id);
 
-let idSelect = "";
+let htmlElementsProduct = "";
 let innerSelect = "";
 let objProduct = {};
-
 
 // Je crée une variable + id récupéré-coupé :
 let urlProduct = `http://localhost:3000/api/cameras/${id}`;
 
-let htmlElementsProduct = "";
-
 // Pour formater le prix du produit :
 let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
+// .toLocalString("EUR", {style : 'currency', currency: 'EUR'})
 
 
 // Afficher le produit (de l'objet) qui a été sélectionné par l'id :
@@ -26,14 +24,16 @@ fetch(urlProduct)
 .then((resp) => resp.json())
 
 .then(function(data) {
-        // console.log(data);
+        console.log(data);
 
         let name = data.name;
         let price = euro.format((data.price) / 100);
         let idProduct = data._id;
+        let image = data.imageUrl;
+        // console.log(idProduct);
 
         htmlElementsProduct += `
-        <div class="card">
+        <div class="card content__card">
 
             <div class="row g-0">
                 <div class="col-md-4 card__image card__image_product">
@@ -43,58 +43,61 @@ fetch(urlProduct)
                     <div class="card-body">
                         <h1 class="card-title">` + name + `</h1>
         
-                        <p class="card-text"><span class="price">` + price + ` TVA incluse</span></p>
+                        <p class="card-text"><span class="price fs-3">` + price + ` </span><span>TVA incluse</span></p>
         
                         <form action="">
+
+                            <div class="d-flex pb-2">
+
+                            <label for="list-lenses" class="form__label fs-5">Lentilles disponibles :  </label>
         
-                            <label for="list-lenses">Lenses disponibles :</label>
-        
-                            <select name="list-lenses" id="list-lenses" class="form-select" aria-label="Default select">
-                               
-                              </select>
-        
-                            <button type="button" class="btn" id="btn-submit">Ajouter au panier</button>
+                            <select name="list-lenses" id="list-lenses" class="form-select form__item fs-5" aria-label="Default select"></select>
+
+                           
+                            </div>
+                                                         
+                            <button type="button" class="btn fs-5 button" id="btn-submit">Ajouter au panier</button>
         
                         </form>
-                        <!-- Bootstrap accordion -->
-                        <div class="accordion" id="accordionPanelsStayOpen">
+
+
+                        <!--Accordion-->
+
+                        <div class="accordion accordion-flush " id="accordionFlushExample">
                             <div class="accordion-item">
-                                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                  Détails du Produit
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                  Description
                                 </button>
                                 </h2>
-                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                                    <div class="accordion-body">
-                                       ` + data.description + `
-                                    </div>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" >
+                                    <div class="accordion-body">` + data.description + `</div>
                                 </div>
                             </div>
                             <div class="accordion-item">
-                                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                 Livraison
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                  Livraison
                                 </button>
                                 </h2>
-                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                                    <div class="accordion-body">
-        
-                                    </div>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" >
+                                    <div class="accordion-body"></div>
                                 </div>
                             </div>
                             <div class="accordion-item">
-                                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                 Retour et Garanties
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                  Retour et Garantie
                                 </button>
                                 </h2>
-                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                                    <div class="accordion-body">
-        
-                                    </div>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
+                                    <div class="accordion-body"></div>
                                 </div>
                             </div>
                         </div>
+
+                        <!--End-->
+                      
         
                     </div>
                 </div>
@@ -103,15 +106,15 @@ fetch(urlProduct)
         </div>
         `
 
-
-        let product = document.querySelector('#root-product');
-        product.innerHTML = htmlElementsProduct;
+        let rootProduct = document.querySelector('#root-product');
+        rootProduct.innerHTML = htmlElementsProduct;
 
         // Je crée une boucle pour les options :
+        let lenses = data.lenses;
 
-        data.lenses.forEach((lense) => {
+        lenses.forEach((lense) => {
 
-            // console.log(element)
+            console.log(lense)
             innerSelect += `<option value="${lense}" class="form__option">${lense}</option>`
 
         });
@@ -119,7 +122,7 @@ fetch(urlProduct)
         // soit une autre boucle :
 
         // let allLenses = data.lenses;
-        // // console.log(lenses);
+        // console.log(lenses);
 
         // for (const element in allLenses) {
         //     innerSelect += `<option value="${allLenses[element]}">${allLenses[element]}</option>`;
@@ -134,9 +137,8 @@ fetch(urlProduct)
         // }
 
         // J'injecte dans le html :
-
-        idSelect = document.querySelector('#list-lenses');
-        idSelect.innerHTML = innerSelect;
+        let select = document.querySelector('#list-lenses');
+        select.innerHTML = innerSelect;
 
 
         /*-----------------------------Récupération du choix 'au clique' -------------------------------*/
@@ -148,15 +150,17 @@ fetch(urlProduct)
             event.preventDefault();
 
             // Détécter le choix de l'utilisateur et mettre dans un objet :
-            let choice = idSelect.value;
+            let choice = select.value;
 
             // Récupérer les valeur du formulaire dans un objet :
             objProduct = {
+                image: image,
                 name: name,
                 lense: choice,
                 price: price,
                 quantity: 1,
-                idProduct: idProduct
+                id: idProduct,
+
 
             };
 
@@ -174,7 +178,7 @@ fetch(urlProduct)
             }
             // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
             else {
-                // Je récupère ma variable transformée en format json dans le tableau : 
+                // Je récupère ma variable dans le tableau : 
                 productInLocalStorage = [];
                 // ensuite, j'envoie le produit séléctionné qui se transforme en json pour aller au localStorage :
                 productInLocalStorage.push(objProduct);

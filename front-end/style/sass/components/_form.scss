@@ -1,0 +1,13 @@
+.form {
+    &__label {
+        padding: .375rem 1.25rem .375rem 0;
+    }
+    &__item {
+        width: inherit;
+        &:focus {
+            border-color: inherit;
+            box-shadow: inherit;
+            outline: 0;
+        }
+    }
+}
