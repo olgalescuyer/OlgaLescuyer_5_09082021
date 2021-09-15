@@ -1,6 +1,7 @@
 .footer {
     background-color: $bg-color-tertiary;
     color: $bg-color-primary;
+    flex: 0 0 auto;
     padding: 1.3rem;
     &__nav {
         @media (min-width: 992px) {

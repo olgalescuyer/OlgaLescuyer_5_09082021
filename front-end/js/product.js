@@ -161,7 +161,6 @@ fetch(urlProduct)
                 quantity: 1,
                 id: idProduct,
 
-
             };
 
             //-----------------------------------------------------------localStorage :
@@ -182,10 +181,6 @@ fetch(urlProduct)
                 let count = productInLocalStorage.length;
                 let rootCounter = document.querySelector('.root-counter');
                 rootCounter.innerText = count;
-
-
-
-
 
             }
             // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
