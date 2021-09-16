@@ -5,7 +5,7 @@ console.log(productInLocalStorage);
 let htmlElementsCartDummy = "";
 let htmlElementsCart = "";
 let htmlElementsCartProduct = "";
-
+let idProduct = "";
 
 // si le panier est vide :
 if (productInLocalStorage === null) {
@@ -80,14 +80,19 @@ if (productInLocalStorage === null) {
 
     productInLocalStorage.forEach((product) => {
 
+        idProduct = product.id;
+        console.log(idProduct);
+
         htmlElementsCartProduct += `
            
-                <div class="row border border-2 border-bottom-0 border-start-0 border-end-0 p-2 g-0">
+                <div class="row border border-2 border-bottom-0 border-start-0 border-end-0 p-2 g-0 " >
                     <div class="col-sm-3 d-flex flex-column justify-content-center p-2 g-0">
                         <div class="page-cart__image">
 
                             <div class="page-cart__product-image">
-                            <img src="${product.image}" alt="appareil photo ${product.name}" class="img-fluid ">
+                                <a href="product.html?${product.id}" title="cliquer pour aller à la page du produit">
+                                <img src="${product.image}" alt="appareil photo ${product.name}" class="img-fluid ">
+                                </a>
                             </div>
                
                         </div>
@@ -116,29 +121,15 @@ if (productInLocalStorage === null) {
         
         `;
 
-        // -------------------------------------------------------Supprimer un produit du panier :
-        document.onclick = event => {
-
-            if (event.target.classList.contains('cart__button-delete')) {
-                console.log(event.target.dataset.id);
-                deleteProduct(event.target.dataset.id);
-            }
-        }
-
-        function deleteProduct(id) {
-
-
-            if (id === product.id) {
-
-                document.querySelector('#root-cart-product').remove();
-            }
-
-        }
 
     })
 
     let rootCartProduct = document.querySelector('#root-cart-product');
     rootCartProduct.innerHTML = htmlElementsCartProduct;
+
+    // -------------------------------------------------------Supprimer un produit du panier :
+
+
 
 
 }

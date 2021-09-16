@@ -17,7 +17,6 @@ let urlProduct = `http://localhost:3000/api/cameras/${id}`;
 let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 // .toLocalString("EUR", {style : 'currency', currency: 'EUR'})
 
-
 // Afficher le produit (de l'objet) qui a été sélectionné par l'id :
 fetch(urlProduct)
 
@@ -140,7 +139,6 @@ fetch(urlProduct)
         let select = document.querySelector('#list-lenses');
         select.innerHTML = innerSelect;
 
-
         /*-----------------------------Récupération du choix 'au clique' -------------------------------*/
         // Je récupère le button dans le DOM :
         let btnSubmit = document.querySelector('#btn-submit');
@@ -175,13 +173,6 @@ fetch(urlProduct)
                 localStorage.setItem('product', JSON.stringify(productInLocalStorage));
                 console.log(productInLocalStorage);
 
-                // ------------------------pour compter des produits ajoutés :
-                console.log(productInLocalStorage.length);
-
-                let count = productInLocalStorage.length;
-                let rootCounter = document.querySelector('.root-counter');
-                rootCounter.innerText = count;
-
             }
             // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
             else {
@@ -195,11 +186,7 @@ fetch(urlProduct)
                 // console.log(productInLocalStorage);
             }
 
-
-
-
         });
-
 
     })
     .catch(function(error) {
@@ -207,3 +194,9 @@ fetch(urlProduct)
     });
 
 //--------------------------------------------------------Affichage de la somme dans le badge 'panier' de header :
+// ------------------------pour compter des produits ajoutés :
+// console.log(productInLocalStorage.length);
+
+// let count = productInLocalStorage.length;
+// let rootCounter = document.querySelector('.root-counter');
+// rootCounter.innerText = count;
