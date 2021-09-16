@@ -155,11 +155,13 @@ fetch(urlProduct)
                 image: image,
                 name: name,
                 lense: choice,
-                price: price,
+                price: data.price,
                 quantity: 1,
                 id: idProduct,
 
             };
+            console.log(objProduct);
+
 
             //-----------------------------------------------------------localStorage :
             //Je controle à l'aide de la méthode 'getItem' s'il y a la clé 'product' que je vais créer dans le localStorage; ensuite, je transforme l'objet de produit en JSON + je l'assigne à une variable :
@@ -193,7 +195,7 @@ fetch(urlProduct)
         console.log(error);
     });
 
-//--------------------------------------------------------Affichage de la somme dans le badge 'panier' de header :
+//--------------------------------------------------------Affichage de la somme dans le badge 'panier' du header :
 // ------------------------pour compter des produits ajoutés :
 // console.log(productInLocalStorage.length);
 

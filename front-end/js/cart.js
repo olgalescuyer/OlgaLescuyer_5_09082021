@@ -1,6 +1,9 @@
 let productInLocalStorage = JSON.parse(localStorage.getItem('product'));
 
-console.log(productInLocalStorage);
+// console.log(productInLocalStorage);
+
+
+let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 
 let htmlElementsCartDummy = "";
 let htmlElementsCart = "";
@@ -8,7 +11,7 @@ let htmlElementsCartProduct = "";
 let idProduct = "";
 
 // si le panier est vide :
-if (productInLocalStorage === null) {
+if (productInLocalStorage === null || productInLocalStorage == 0) {
 
     htmlElementsCartDummy += `
     <!--Panier vide stub/ plug /dumm-->
@@ -54,14 +57,14 @@ if (productInLocalStorage === null) {
 
         <div class="d-flex flex-column border border-2 border-top-0 border-end-0 border-start-0 p-2">
             <span class="fs-3 fw-bold">Total</span>
-             <span class="d-flex justify-content-between fs-5">Sous-total <span class=""></span></span>
+             <span class="d-flex justify-content-between fs-5">Sous-total <span class="root-counter"></span></span>
             <span class="d-flex justify-content-between fs-5 pb-2">Livraison<span class="">0,00 €</span></span>
         </div>
 
         <div class="d-flex flex-column p-2">
             <span class="fs-4 fw-bold mb-2 d-flex justify-content-between">Total (TVA incluse) <span class=""></span></span>
             <form class="mt-2" action="">
-                 <button class="btn fs-5 fw-bold w-100 button">COMMANDER</button>
+                 <button type="submit" class="btn fs-5 fw-bold w-100 button cart__button-submit">COMMANDER</button>
             </form>
         </div>
 
@@ -81,7 +84,9 @@ if (productInLocalStorage === null) {
     productInLocalStorage.forEach((product) => {
 
         idProduct = product.id;
-        console.log(idProduct);
+        // console.log(idProduct);
+
+        let price = euro.format((product.price) / 100);
 
         htmlElementsCartProduct += `
            
@@ -98,18 +103,18 @@ if (productInLocalStorage === null) {
                         </div>
                     </div>
                     <div class="col-sm-4 d-flex flex-column justify-content-center p-2">
-                        <p class="fs-3">${product.name}</p>
-                        <p class="fs-5">Lentille : ${product.lense}</p>
+                        <p class="fs-3 product-name">${product.name}</p>
+                        <p class="fs-5 product-option">Lentille : ${product.lense}</p>
                     </div>
                     <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
                         <span>X1</span>
                     </div>
                     <div class="col-sm-3 d-flex flex-column justify-content-center p-2">
-                        <span class="fs-4">Price ${product.price}</span>
+                        <span class="fs-4 product-price">Price ${price}</span>
                     </div>
                     <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
 
-                        <button class="cart__button-delete" data-id="${product.id}">
+                        <button class="cart__button-delete">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -121,15 +126,56 @@ if (productInLocalStorage === null) {
         
         `;
 
-
     })
 
     let rootCartProduct = document.querySelector('#root-cart-product');
     rootCartProduct.innerHTML = htmlElementsCartProduct;
 
-    // -------------------------------------------------------Supprimer un produit du panier :
-
-
-
-
 }
+
+// -------------------------------------------------------Supprimer un produit du panier :
+let btnDelete = document.querySelectorAll('.cart__button-delete');
+// console.log(btnDelete);
+
+for (let i = 0; i < btnDelete.length; i++) {
+    btnDelete[i].addEventListener('click', (e) => {
+        e.preventDefault();
+
+        let idForDelete = productInLocalStorage[i].id;
+        // console.log(idForDelete);
+
+        productInLocalStorage = productInLocalStorage.filter(element => element.id !== idForDelete);
+        console.log(productInLocalStorage);
+
+        // je renvoie un nouveau tableau dans le localStorage :
+        localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+
+        // une fenetre modal pour avertir qu'un produit a été supprimé sur
+
+        // et recharger la page :
+        window.location.reload();
+
+    })
+}
+
+//-------------------------------Calculer la somme :------------------------------------------------
+let countPriceTotal = [];
+
+for (let i = 0; i < productInLocalStorage.length; i++) {
+
+    let priceProductInCart = productInLocalStorage[i].price;
+
+    countPriceTotal.push(priceProductInCart);
+    // console.log(countPriceTotal);
+}
+
+// addition :
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const countTotal = countPriceTotal.reduce(reducer, 0);
+
+console.log(countTotal);
+
+let convert = euro.format((countTotal) / 100);
+
+let spanCount = document.querySelector('.root-counter');
+spanCount.innerText = `${convert}`;
