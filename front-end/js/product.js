@@ -25,10 +25,11 @@ fetch(urlProduct)
 .then(function(data) {
         console.log(data);
 
-        let name = data.name;
+        let name = data.name
         let price = euro.format((data.price) / 100);
         let idProduct = data._id;
         let image = data.imageUrl;
+        let description = data.description;
         // console.log(idProduct);
 
         htmlElementsProduct += `
@@ -36,13 +37,13 @@ fetch(urlProduct)
 
             <div class="row g-0">
                 <div class="col-md-4 card__image card__image_product">
-                    <img src="` + data.imageUrl + `" class="img-fluid" alt="appareil photo ${name}">
+                    <img src="${image}" class="img-fluid" alt="appareil photo ${name}">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h1 class="card-title">` + name + `</h1>
+                        <h1 class="card-title">${name}</h1>
         
-                        <p class="card-text"><span class="price fs-3">` + price + ` </span><span>TVA incluse</span></p>
+                        <p class="card-text"><span class="price fs-3">${price}</span><span>TVA incluse</span></p>
         
                         <form action="">
 
@@ -55,7 +56,7 @@ fetch(urlProduct)
                            
                             </div>
                                                          
-                            <button type="button" class="btn fs-5 button" id="btn-submit">Ajouter au panier</button>
+                            <button type="button" class="btn fs-5 mb-2 button" id="btn-submit">Ajouter au panier</button>
         
                         </form>
 
@@ -70,7 +71,7 @@ fetch(urlProduct)
                                 </button>
                                 </h2>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" >
-                                    <div class="accordion-body">` + data.description + `</div>
+                                    <div class="accordion-body">${description}</div>
                                 </div>
                             </div>
                             <div class="accordion-item">
@@ -148,13 +149,14 @@ fetch(urlProduct)
             event.preventDefault();
 
             // Détécter le choix de l'utilisateur et mettre dans un objet :
-            let choice = select.value;
+            let choiceOption = select.value;
 
             // Récupérer les valeur du formulaire dans un objet :
             objProduct = {
+
                 image: image,
                 name: name,
-                lense: choice,
+                lense: choiceOption,
                 price: data.price,
                 quantity: 1,
                 id: idProduct,
@@ -187,6 +189,10 @@ fetch(urlProduct)
                 localStorage.setItem('product', JSON.stringify(productInLocalStorage));
                 // console.log(productInLocalStorage);
             }
+
+            // pour le badge dans le header :
+
+            counterBadge();
 
         });
 

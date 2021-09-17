@@ -15,7 +15,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
     htmlElementsCartDummy += `
     <!--Panier vide stub/ plug /dumm-->
-    <div class="card h-100  p-5">
+    <div class="card h-100  p-5 rounded-0 border-0">
         <h2 class="text-center p-3">Panier est vide !</h2>
 
         <div class="text-center p-5">
@@ -40,7 +40,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
     htmlElementsCart = `
 
-    <div class="card bg content__card ">
+    <div class="card content__card">
 
         <span class="cart__title fs-2 p-3 fw-bold">Mon panier : 
         </span>
@@ -157,6 +157,8 @@ for (let i = 0; i < btnDelete.length; i++) {
 
     })
 }
+
+
 
 //-------------------------------Calculer la somme TOTAL :------------------------------------------------
 let countPriceTotal = [];
