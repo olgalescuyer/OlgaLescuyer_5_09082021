@@ -64,7 +64,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
         <div class="d-flex flex-column p-2">
             <span class="fs-4 fw-bold mb-2 d-flex justify-content-between">Total (TVA incluse) <span class=""></span></span>
             <form class="mt-2" action="">
-                 <button type="submit" class="btn fs-5 fw-bold w-100 button cart__button-submit">COMMANDER</button>
+                 <button type="button" class="btn fs-5 fw-bold w-100 button cart__button-submit" data-bs-toggle="modal" data-bs-target="#myModal">COMMANDER</button>
             </form>
         </div>
 
@@ -158,7 +158,7 @@ for (let i = 0; i < btnDelete.length; i++) {
     })
 }
 
-//-------------------------------Calculer la somme :------------------------------------------------
+//-------------------------------Calculer la somme TOTAL :------------------------------------------------
 let countPriceTotal = [];
 
 for (let i = 0; i < productInLocalStorage.length; i++) {

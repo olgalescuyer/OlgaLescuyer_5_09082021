@@ -10,6 +10,7 @@
     <!--BOOTSTRAP par CDN-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+
     <link rel="shortcut icon" type="image/jpg" href="./front-end/img/favicon-min.jpg">
 
     <!--Style-->
@@ -89,6 +90,59 @@
                     </div>
 
                 </div>
+
+                <!-- Modal -->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content rounded-0">
+                            <div class="modal-header rounded-0">
+                                <h5 class="modal-title ">Bonjour! Veuillez remplir ce formulaire :</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form action="">
+                                    <div class="mb-3">
+                                        <label for="prenom" class="form-label required">Prénom</label>
+                                        <input type="text" class="form-control" placeholder="Votre prénom" id="prenom" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="nom" class="form-label required">Nom</label>
+                                        <input type="text" class="form-control" placeholder="Votre nom" id="nom" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="mail" class="form-label required">E-mail</label>
+                                        <input type="email" class="form-control" placeholder="Votre adresse e-mail" id="mail" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="code-postal" class="form-label required">Code postal</label>
+                                        <input type="number" class="form-control" placeholder="Votre code postal" id="code-postal" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="adresse" class="form-label required">Adresse</label>
+                                        <input type="text" class="form-control" placeholder="Votre adresse" id="adresse" required>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <span class="modal-footer__footnote">* Champs obligatoires</span>
+                                <button type="submit" class="btn button">Commander</button>
+                                <button type="submit" class="btn btn-danger">Annuler</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--modal-content -->
+
 
             </section>
         </main>
@@ -196,6 +250,7 @@
 
     <!--Mon fichier script-->
     <script src="./front-end/js/cart.js "></script>
+    <script src="./front-end/js/modal.js "></script>
 
 
 </body>

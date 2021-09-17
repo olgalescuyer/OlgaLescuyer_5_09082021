@@ -160,6 +160,26 @@ main {
   }
 }
 
+.required::after {
+  content: "*";
+  color: red;
+}
+
+.modal-header {
+  background: #dc8525;
+  background: linear-gradient(142deg, #dc8525 2%, #925cf7 100%);
+}
+
+.modal-footer {
+  position: relative;
+}
+.modal-footer__footnote {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: smaller;
+}
+
 .button {
   color: #f3e9f1;
   background-color: #3e252f;

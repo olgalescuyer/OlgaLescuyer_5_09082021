@@ -3,3 +3,8 @@
     background-color: $bg-color-tertiary;
     border-color: $bg-color-tertiary;
 }
+
+@mixin gradient {
+    background: rgb(220, 133, 37);
+    background: linear-gradient(142deg, rgba(220, 133, 37, 1) 2%, rgba(146, 92, 247, 1) 100%);
+}

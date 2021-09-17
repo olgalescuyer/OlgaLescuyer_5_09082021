@@ -1,0 +1,18 @@
+.required::after {
+    content: "*";
+    color: red;
+}
+
+.modal-header {
+    @include gradient;
+}
+
+.modal-footer {
+    position: relative;
+    &__footnote {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: smaller;
+    }
+}
