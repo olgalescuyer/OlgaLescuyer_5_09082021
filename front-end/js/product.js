@@ -43,7 +43,7 @@ fetch(urlProduct)
                     <div class="card-body">
                         <h1 class="card-title">${name}</h1>
         
-                        <p class="card-text"><span class="price fs-3">${price}</span><span>TVA incluse</span></p>
+                        <p class="card-text"><span class="price fs-3">${price}</span><span> TVA incluse</span></p>
         
                         <form action="">
 
@@ -190,8 +190,7 @@ fetch(urlProduct)
                 // console.log(productInLocalStorage);
             }
 
-            // pour le badge dans le header :
-
+            // Fonction pour le badge dans le header :
             counterBadge();
 
         });
@@ -200,11 +199,3 @@ fetch(urlProduct)
     .catch(function(error) {
         console.log(error);
     });
-
-//--------------------------------------------------------Affichage de la somme dans le badge 'panier' du header :
-// ------------------------pour compter des produits ajoutés :
-// console.log(productInLocalStorage.length);
-
-// let count = productInLocalStorage.length;
-// let rootCounter = document.querySelector('.root-counter');
-// rootCounter.innerText = count;

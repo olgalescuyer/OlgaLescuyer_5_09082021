@@ -26,12 +26,12 @@ fetch(url)
             <div class="card content__card content__card_index">
 
             <div class="card__image card__image-index">
-                <img src="` + camera.imageUrl + `" class="img-fluid " alt="appareil photo">
+                <img src="${camera.imageUrl}" class="img-fluid " alt="appareil photo">
             </div>
 
             <div class="card-body">
 
-                <h5 class="card-title">` + camera.name + `</h5>
+                <h2 class="card-title h5">${camera.name}</h2>
 
                 <p class="card-text"><span class="price">` + euro.format((camera.price) / 100) + ` TVA incluse</span></p>
              

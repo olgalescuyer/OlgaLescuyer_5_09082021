@@ -1,7 +1,5 @@
 let productInLocalStorage = JSON.parse(localStorage.getItem('product'));
-
 // console.log(productInLocalStorage);
-
 
 let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 
@@ -15,7 +13,9 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
     htmlElementsCartDummy += `
     <!--Panier vide stub/ plug /dumm-->
+
     <div class="card h-100  p-5 rounded-0 border-0">
+
         <h2 class="text-center p-3">Panier est vide !</h2>
 
         <div class="text-center p-5">
@@ -30,6 +30,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
         </div>
 
     </div>
+
     <!--end-->
 
     `
@@ -42,10 +43,9 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
     <div class="card content__card">
 
-        <span class="cart__title fs-2 p-3 fw-bold">Mon panier : 
-        </span>
+        <h1 class="cart__title fs-2 p-3 fw-bold">Mon panier : 
+        </h1>
 
-    
         <div class="d-flex" >
 
         <div class="w-75" id="root-cart-product"></div> 
@@ -53,16 +53,25 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
         <div class="w-25 d-flex " id="root-cart-counter">
 
-        <div class="d-flex  flex-column w-100 h-100 p-3 bg-white ">
+        <div class="d-flex flex-column w-100 h-100 p-3 bg-white ">
 
         <div class="d-flex flex-column border border-2 border-top-0 border-end-0 border-start-0 p-2">
-            <span class="fs-3 fw-bold">Total</span>
+
+            <span class="fs-3 mb-4 fw-bold">Total</span>
+
              <span class="d-flex justify-content-between fs-5">Sous-total <span class="root-counter"></span></span>
-            <span class="d-flex justify-content-between fs-5 pb-2">Livraison<span class="">0,00 €</span></span>
+
+            <span class="d-flex justify-content-between fs-5 pb-2">Livraison<span class="">Gratuite</span></span>
         </div>
 
         <div class="d-flex flex-column p-2">
-            <span class="fs-4 fw-bold mb-2 d-flex justify-content-between">Total (TVA incluse) <span class=""></span></span>
+            <div class=" mb-4 d-flex justify-content-between">
+                <div class="d-flex flex-column">
+                    <span class="fs-4 fw-bold">Total </span><span class="fs-6 fw-bold">(TVA incluse)</span>
+                </div>
+                <span class="fs-4 fw-bold root-counter-total"></span>
+            </div>
+           
             <form class="mt-2" action="">
                  <button type="button" class="btn fs-5 fw-bold w-100 button cart__button-submit" data-bs-toggle="modal" data-bs-target="#myModal">COMMANDER</button>
             </form>
@@ -103,7 +112,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
                         </div>
                     </div>
                     <div class="col-sm-4 d-flex flex-column justify-content-center p-2">
-                        <p class="fs-3 product-name">${product.name}</p>
+                        <h2 class="fs-3 product-name">${product.name}</h2>
                         <p class="fs-5 product-option">Lentille : ${product.lense}</p>
                     </div>
                     <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
@@ -145,7 +154,7 @@ for (let i = 0; i < btnDelete.length; i++) {
         // console.log(idForDelete);
 
         productInLocalStorage = productInLocalStorage.filter(element => element.id !== idForDelete);
-        console.log(productInLocalStorage);
+        // console.log(productInLocalStorage);
 
         // je renvoie un nouveau tableau dans le localStorage :
         localStorage.setItem('product', JSON.stringify(productInLocalStorage));
@@ -174,10 +183,12 @@ for (let i = 0; i < productInLocalStorage.length; i++) {
 // addition :
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 const countTotal = countPriceTotal.reduce(reducer, 0);
-
-console.log(countTotal);
+// console.log(countTotal);
 
 let convert = euro.format((countTotal) / 100);
 
 let spanCount = document.querySelector('.root-counter');
 spanCount.innerText = `${convert}`;
+
+let spanCountTotal = document.querySelector('.root-counter-total');
+spanCountTotal.innerText = `${convert}`;

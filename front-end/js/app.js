@@ -17,7 +17,7 @@ function counterBadge() {
         badgeIcon.classList.add('invisible');
 
         let badgeIconCheck = document.querySelector('.header__icon_bag-check');
-        console.log(badgeIconCheck);
+        // console.log(badgeIconCheck);
         badgeIconCheck.classList.remove('invisible');
 
     }
