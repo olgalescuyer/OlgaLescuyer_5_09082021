@@ -55,7 +55,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
         <div class="d-flex flex-column w-100 h-100 p-3 bg-white ">
 
-        <div class="d-flex flex-column border border-2 border-top-0 border-end-0 border-start-0 p-2">
+        <div class="d-flex flex-column border border-2 border-top-0 border-end-0 border-start-0">
 
             <span class="fs-3 mb-4 fw-bold">Total</span>
 
@@ -64,7 +64,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
             <span class="d-flex justify-content-between fs-5 pb-2">Livraison<span class="">Gratuite</span></span>
         </div>
 
-        <div class="d-flex flex-column p-2">
+        <div class="d-flex flex-column">
             <div class=" mb-4 d-flex justify-content-between">
                 <div class="d-flex flex-column">
                     <span class="fs-4 fw-bold">Total </span><span class="fs-6 fw-bold">(TVA incluse)</span>
