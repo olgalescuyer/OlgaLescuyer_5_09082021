@@ -25,6 +25,7 @@ function fetchApi(url) {
                 // Je logue pour controler des objets reçus :
                 //consol.log(camera);
 
+                // Pour convertir en euro format :
                 let price = euro.format((data.price) / 100);
 
                 // Mon template :
@@ -41,7 +42,7 @@ function fetchApi(url) {
 
                 <p class="card-text"><span class="price">${price} TVA incluse</span></p>
              
-                <div class="text-center"><a href=" product.html?id=${camera._id}" class="btn button w-100" title="cliquer pour aller à la page de produit" id="` + camera._id + `">En savoir plus</a></div>
+                <div class="text-center"><a href=" product.html?${camera._id}" class="btn button w-100" title="cliquer pour aller à la page de produit" id="${camera._id}">En savoir plus</a></div>
 
             </div>
             </div>

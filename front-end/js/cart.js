@@ -93,7 +93,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
     productInLocalStorage.forEach((product) => {
 
         idProduct = product.id;
-        // console.log(idProduct);
+        console.log(idProduct);
 
         let price = euro.format((product.price) / 100);
 

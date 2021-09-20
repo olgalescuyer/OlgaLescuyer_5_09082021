@@ -30,7 +30,7 @@ btnFormSubmit.addEventListener('click', (e) => {
     console.log(objCartForm);
 
 
-    // location.replace("thank-you-page.html");
+    location.replace("thank-you-page.html");
     console.log(formValues)
 })
 
