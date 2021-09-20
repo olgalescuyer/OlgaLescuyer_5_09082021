@@ -4,6 +4,8 @@ var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
 
 /*----------------------------------------------------------------*/
 // Récupérer des valeurs du formulaire dans le localStorage :
+
+
 const btnFormSubmit = document.querySelector('.button-form-submit');
 
 
@@ -11,22 +13,28 @@ btnFormSubmit.addEventListener('click', (e) => {
     e.preventDefault;
 
     const formValues = {
-        prenom: document.querySelector('#prenom').value,
-        nom: document.querySelector('#nom').value,
-        mail: document.querySelector('#mail').value,
-        code_postal: document.querySelector('#code_postal').value,
-        adresse: document.querySelector('#adresse').value
+        firstName: document.querySelector('#firstName').value,
+        lastName: document.querySelector('#lastName').value,
+        email: document.querySelector('#email').value,
+        postcode: document.querySelector('#postcode').value,
+        address: document.querySelector('#address').value
     }
 
     // Mettre formValues dans le localStorage :
     localStorage.setItem('formValues', JSON.stringify(formValues));
 
-    const pushBackend = {
+    const objCartForm = {
         productInLocalStorage,
         formValues
     }
-    console.log(pushBackend)
+    console.log(objCartForm);
 
-    location.replace("thank-you-page.html");
 
+    // location.replace("thank-you-page.html");
+    console.log(formValues)
 })
+
+//------------------------------- Validation du forrmulaire :
+
+// const firstName = formValues.firstName;
+console.log(objCartForm);

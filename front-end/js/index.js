@@ -6,23 +6,29 @@ let htmlElements = "";
 
 let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 
-// fetch va retourner la promesse :
-fetch(url)
+fetchApi(url);
 
-// Ici la reponse réçue dans la promesse je transforme en json format à l'aide de 'arrow function' :
-.then((resp) => resp.json())
+function fetchApi(url) {
 
-// Ensuite, dans la promesse je crée une fonction avec un argument data qui contient une boucle forEach :
-.then(function(data) {
+    // fetch va retourner la promesse :
+    fetch(url)
 
-        // La boucle forEach pour chaque objet de 'data' contient une arrow function que récupère les items de tableau 'data' et introduit les items de table dans mon template html :
-        data.forEach((camera) => {
+    // Ici la reponse réçue dans la promesse je transforme en json format à l'aide de 'arrow function' :
+    .then((resp) => resp.json())
 
-            // Je logue pour controler des objets reçus :
-            // console.log(camera);
+    // Ensuite, dans la promesse je crée une fonction avec un argument data qui contient une boucle forEach :
+    .then(function(data) {
 
-            // Mon template :
-            htmlElements += ` 
+            // La boucle forEach pour chaque objet de 'data' contient une arrow function que récupère les items de tableau 'data' et introduit les items de table dans mon template html :
+            data.forEach((camera) => {
+
+                // Je logue pour controler des objets reçus :
+                //consol.log(camera);
+
+                let price = euro.format((data.price) / 100);
+
+                // Mon template :
+                htmlElements += ` 
             <div class="card content__card content__card_index">
 
             <div class="card__image card__image-index">
@@ -33,22 +39,23 @@ fetch(url)
 
                 <h2 class="card-title h5">${camera.name}</h2>
 
-                <p class="card-text"><span class="price">` + euro.format((camera.price) / 100) + ` TVA incluse</span></p>
+                <p class="card-text"><span class="price">${price} TVA incluse</span></p>
              
-                <div class="text-center"><a href=" product.html?` + camera._id + `" class="btn button w-100" title="cliquer pour aller à la page de produit" id="` + camera._id + `">En savoir plus</a></div>
+                <div class="text-center"><a href=" product.html?id=${camera._id}" class="btn button w-100" title="cliquer pour aller à la page de produit" id="` + camera._id + `">En savoir plus</a></div>
 
             </div>
             </div>
              `
+            })
+
+            // Je crée une variable locale pour l'acces à la DOM + j'assigne  :
+            let allCameras = document.getElementById('root');
+
+            // J'injecte mon template à l'aide de la propriété innerHTML :
+            allCameras.innerHTML = htmlElements;
+
         })
-
-        // Je crée une variable locale pour l'acces à la DOM + j'assigne  :
-        let allCameras = document.getElementById('root');
-
-        // J'injecte mon template à l'aide de la propriété innerHTML :
-        allCameras.innerHTML = htmlElements;
-
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+        .catch(function(error) {
+            console.log(error);
+        });
+}
