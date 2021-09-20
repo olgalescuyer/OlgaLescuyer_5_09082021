@@ -3,7 +3,7 @@ const queryStringUrlId = window.location.search;
 // console.log(queryStringUrlId);
 
 // pour couper le point d'interrogation :
-const id = queryStringUrlId.slice(1);
+const id = queryStringUrlId.slice(4);
 // console.log(id);
 
 let htmlElementsProduct = "";
@@ -17,22 +17,26 @@ let urlProduct = `http://localhost:3000/api/cameras/${id}`;
 let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 // .toLocalString("EUR", {style : 'currency', currency: 'EUR'})
 
-// Afficher le produit (de l'objet) qui a été sélectionné par l'id :
-fetch(urlProduct)
+fetchApi(urlProduct);
 
-.then((resp) => resp.json())
+function fetchApi(urlProduct) {
 
-.then(function(data) {
-        console.log(data);
+    // Afficher le produit (de l'objet) qui a été sélectionné par l'id :
+    fetch(urlProduct)
 
-        let name = data.name
-        let price = euro.format((data.price) / 100);
-        let idProduct = data._id;
-        let image = data.imageUrl;
-        let description = data.description;
-        // console.log(idProduct);
+    .then((resp) => resp.json())
 
-        htmlElementsProduct += `
+    .then(function(data) {
+            console.log(data);
+
+            let name = data.name
+            let price = euro.format((data.price) / 100);
+            let idProduct = data._id;
+            let image = data.imageUrl;
+            let description = data.description;
+            // console.log(idProduct);
+
+            htmlElementsProduct += `
         <div class="card content__card">
 
             <div class="row g-0">
@@ -106,96 +110,97 @@ fetch(urlProduct)
         </div>
         `
 
-        let rootProduct = document.querySelector('#root-product');
-        rootProduct.innerHTML = htmlElementsProduct;
+            let rootProduct = document.querySelector('#root-product');
+            rootProduct.innerHTML = htmlElementsProduct;
 
-        // Je crée une boucle pour les options :
-        let lenses = data.lenses;
+            // Je crée une boucle pour les options :
+            let lenses = data.lenses;
 
-        lenses.forEach((lense) => {
+            lenses.forEach((lense) => {
 
-            console.log(lense)
-            innerSelect += `<option value="${lense}" class="form__option">${lense}</option>`
+                console.log(lense)
+                innerSelect += `<option value="${lense}" class="form__option">${lense}</option>`
 
-        });
+            });
 
-        // soit une autre boucle :
+            // soit une autre boucle :
 
-        // let allLenses = data.lenses;
-        // console.log(lenses);
+            // let allLenses = data.lenses;
+            // console.log(lenses);
 
-        // for (const element in allLenses) {
-        //     innerSelect += `<option value="${allLenses[element]}">${allLenses[element]}</option>`;
-        //     console.log(element);
-        // }
-
-
-        // soit encore une autre :
-
-        // for (const element of allLenses) {
-        //     innerSelect += `<option value="${element}">${element}</option>`;
-        // }
-
-        // J'injecte dans le html :
-        let select = document.querySelector('#list-lenses');
-        select.innerHTML = innerSelect;
-
-        /*-----------------------------Récupération du choix 'au clique' -------------------------------*/
-        // Je récupère le button dans le DOM :
-        let btnSubmit = document.querySelector('#btn-submit');
-
-        // Ecouter l'événement et créer un objet de choix de l'utilisateur :
-        btnSubmit.addEventListener('click', (event) => {
-            event.preventDefault();
-
-            // Détécter le choix de l'utilisateur et mettre dans un objet :
-            let choiceOption = select.value;
-
-            // Récupérer les valeur du formulaire dans un objet :
-            objProduct = {
-
-                image: image,
-                name: name,
-                lense: choiceOption,
-                price: data.price,
-                quantity: 1,
-                id: idProduct,
-
-            };
-            console.log(objProduct);
+            // for (const element in allLenses) {
+            //     innerSelect += `<option value="${allLenses[element]}">${allLenses[element]}</option>`;
+            //     console.log(element);
+            // }
 
 
-            //-----------------------------------------------------------localStorage :
-            //Je controle à l'aide de la méthode 'getItem' s'il y a la clé 'product' que je vais créer dans le localStorage; ensuite, je transforme l'objet de produit en JSON + je l'assigne à une variable :
-            let productInLocalStorage = JSON.parse(localStorage.getItem('product'));
-            // console.log(productInLocalStorage);
-            // ça donne null parce que la clé n'existe pas encore, donc je vais créer la clé dans le 'else' ->>
+            // soit encore une autre :
 
-            if (productInLocalStorage) {
+            // for (const element of allLenses) {
+            //     innerSelect += `<option value="${element}">${element}</option>`;
+            // }
 
-                productInLocalStorage.push(objProduct);
-                localStorage.setItem('product', JSON.stringify(productInLocalStorage));
-                console.log(productInLocalStorage);
+            // J'injecte dans le html :
+            let select = document.querySelector('#list-lenses');
+            select.innerHTML = innerSelect;
 
-            }
-            // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
-            else {
-                // Je récupère ma variable dans le tableau : 
-                productInLocalStorage = [];
-                // ensuite, j'envoie le produit séléctionné qui se transforme en json pour aller au localStorage :
-                productInLocalStorage.push(objProduct);
+            /*-----------------------------Récupération du choix 'au clique' -------------------------------*/
+            // Je récupère le button dans le DOM :
+            let btnSubmit = document.querySelector('#btn-submit');
 
-                // Je crée la clé 'product' pour le tableau qui contient le produit choisi au clique + je transforme en json à l'aide de la méthode stringify :
-                localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+            // Ecouter l'événement et créer un objet de choix de l'utilisateur :
+            btnSubmit.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                // Détécter le choix de l'utilisateur et mettre dans un objet :
+                let choiceOption = select.value;
+
+                // Récupérer les valeur du formulaire dans un objet :
+                objProduct = {
+
+                    image: image,
+                    name: name,
+                    lense: choiceOption,
+                    price: data.price,
+                    quantity: 1,
+                    id: idProduct,
+
+                };
+                console.log(objProduct);
+
+
+                //-----------------------------------------------------------localStorage :
+                //Je controle à l'aide de la méthode 'getItem' s'il y a la clé 'product' que je vais créer dans le localStorage; ensuite, je transforme l'objet de produit en JSON + je l'assigne à une variable :
+                let productInLocalStorage = JSON.parse(localStorage.getItem('product'));
                 // console.log(productInLocalStorage);
-            }
+                // ça donne null parce que la clé n'existe pas encore, donc je vais créer la clé dans le 'else' ->>
 
-            // Fonction pour le badge dans le header :
-            counterBadge();
+                if (productInLocalStorage) {
 
+                    productInLocalStorage.push(objProduct);
+                    localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+                    console.log(productInLocalStorage);
+
+                }
+                // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
+                else {
+                    // Je récupère ma variable dans le tableau : 
+                    productInLocalStorage = [];
+                    // ensuite, j'envoie le produit séléctionné qui se transforme en json pour aller au localStorage :
+                    productInLocalStorage.push(objProduct);
+
+                    // Je crée la clé 'product' pour le tableau qui contient le produit choisi au clique + je transforme en json à l'aide de la méthode stringify :
+                    localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+                    // console.log(productInLocalStorage);
+                }
+
+                // Fonction pour le badge dans le header :
+                counterBadge();
+
+            });
+
+        })
+        .catch(function(error) {
+            console.log(error);
         });
-
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+}
