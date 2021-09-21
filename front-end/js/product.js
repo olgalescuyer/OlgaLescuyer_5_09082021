@@ -18,6 +18,9 @@ let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 // .toLocalString("EUR", {style : 'currency', currency: 'EUR'})
 
 
+
+
+
 // Afficher le produit (de l'objet) qui a été sélectionné par l'id :
 fetch(urlProduct)
 
@@ -26,10 +29,11 @@ fetch(urlProduct)
 .then(function(data) {
         console.log(data);
 
-        let name = data.name;
+        let name = data.name
         let price = euro.format((data.price) / 100);
         let idProduct = data._id;
         let image = data.imageUrl;
+        let description = data.description;
         // console.log(idProduct);
 
         htmlElementsProduct += `
@@ -37,13 +41,13 @@ fetch(urlProduct)
 
             <div class="row g-0">
                 <div class="col-md-4 card__image card__image_product">
-                    <img src="` + data.imageUrl + `" class="img-fluid" alt="appareil photo ${name}">
+                    <img src="${image}" class="img-fluid" alt="appareil photo ${name}">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h1 class="card-title">` + name + `</h1>
+                        <h1 class="card-title">${name}</h1>
         
-                        <p class="card-text"><span class="price fs-3">` + price + ` </span><span>TVA incluse</span></p>
+                        <p class="card-text"><span class="price fs-3">${price}</span><span> TVA incluse</span></p>
         
                         <form action="">
 
@@ -56,7 +60,7 @@ fetch(urlProduct)
                            
                             </div>
                                                          
-                            <button type="button" class="btn fs-5 button" id="btn-submit">Ajouter au panier</button>
+                            <button type="button" class="btn fs-5 mb-2 button" id="btn-submit">Ajouter au panier</button>
         
                         </form>
 
@@ -71,7 +75,7 @@ fetch(urlProduct)
                                 </button>
                                 </h2>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" >
-                                    <div class="accordion-body">` + data.description + `</div>
+                                    <div class="accordion-body">${description}</div>
                                 </div>
                             </div>
                             <div class="accordion-item">
@@ -140,7 +144,6 @@ fetch(urlProduct)
         let select = document.querySelector('#list-lenses');
         select.innerHTML = innerSelect;
 
-
         /*-----------------------------Récupération du choix 'au clique' -------------------------------*/
         // Je récupère le button dans le DOM :
         let btnSubmit = document.querySelector('#btn-submit');
@@ -150,18 +153,21 @@ fetch(urlProduct)
             event.preventDefault();
 
             // Détécter le choix de l'utilisateur et mettre dans un objet :
-            let choice = select.value;
+            let choiceOption = select.value;
 
             // Récupérer les valeur du formulaire dans un objet :
             objProduct = {
+
                 image: image,
                 name: name,
-                lense: choice,
-                price: price,
+                lense: choiceOption,
+                price: data.price,
                 quantity: 1,
                 id: idProduct,
 
             };
+            console.log(objProduct);
+
 
             //-----------------------------------------------------------localStorage :
             //Je controle à l'aide de la méthode 'getItem' s'il y a la clé 'product' que je vais créer dans le localStorage; ensuite, je transforme l'objet de produit en JSON + je l'assigne à une variable :
@@ -174,13 +180,6 @@ fetch(urlProduct)
                 productInLocalStorage.push(objProduct);
                 localStorage.setItem('product', JSON.stringify(productInLocalStorage));
                 console.log(productInLocalStorage);
-
-                // ------------------------pour compter des produits ajoutés :
-                console.log(productInLocalStorage.length);
-
-                let count = productInLocalStorage.length;
-                let rootCounter = document.querySelector('.root-counter');
-                rootCounter.innerText = count;
 
             }
             // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
@@ -195,15 +194,12 @@ fetch(urlProduct)
                 // console.log(productInLocalStorage);
             }
 
-
-
+            // Fonction pour le badge dans le header :
+            counterBadge();
 
         });
-
 
     })
     .catch(function(error) {
         console.log(error);
     });
-
-//--------------------------------------------------------Affichage de la somme dans le badge 'panier' de header :

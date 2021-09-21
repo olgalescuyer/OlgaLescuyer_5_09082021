@@ -19,23 +19,23 @@ fetch(url)
         data.forEach((camera) => {
 
             // Je logue pour controler des objets reçus :
-            // console.log(camera);
+            // consol.log(camera);
 
             // Mon template :
             htmlElements += ` 
             <div class="card content__card content__card_index">
 
             <div class="card__image card__image-index">
-                <img src="` + camera.imageUrl + `" class="img-fluid " alt="appareil photo">
+                <img src="${camera.imageUrl}" class="img-fluid " alt="appareil photo">
             </div>
 
             <div class="card-body">
 
-                <h5 class="card-title">` + camera.name + `</h5>
+                <h2 class="card-title h5">${camera.name}</h2>
 
-                <p class="card-text"><span class="price">` + euro.format((camera.price) / 100) + ` TVA incluse</span></p>
+                <p class="card-text"><span class="price">${euro.format((camera.price) / 100)} TVA incluse</span></p>
              
-                <div class="text-center"><a href=" product.html?` + camera._id + `" class="btn button w-100" title="cliquer pour aller à la page de produit" id="` + camera._id + `">En savoir plus</a></div>
+                <div class="text-center"><a href=" product.html?${camera._id}" class="btn button w-100" title="cliquer pour aller à la page de produit" id="${camera._id}">En savoir plus</a></div>
 
             </div>
             </div>
@@ -43,10 +43,10 @@ fetch(url)
         })
 
         // Je crée une variable locale pour l'acces à la DOM + j'assigne  :
-        let allCameras = document.getElementById('root');
+        let rootIndex = document.getElementById('root-index');
 
         // J'injecte mon template à l'aide de la propriété innerHTML :
-        allCameras.innerHTML = htmlElements;
+        rootIndex.innerHTML = htmlElements;
 
     })
     .catch(function(error) {

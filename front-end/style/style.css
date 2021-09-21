@@ -51,10 +51,6 @@ input {
   top: 4%;
   left: 30%;
   transform: scale(1.4);
-  visibility: hidden;
-}
-.header__icon_bag {
-  visibility: visible;
 }
 .header__btn-toggler {
   font-size: 2rem;
@@ -160,10 +156,31 @@ main {
   }
 }
 
+.required::after {
+  content: "*";
+  color: red;
+}
+
+._gradient {
+  background: #dc8525;
+  background: linear-gradient(142deg, #dc8525 2%, #925cf7 100%);
+}
+
+.modal-footer {
+  position: relative;
+}
+.modal-footer__footnote {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: smaller;
+}
+
 .button {
   color: #f3e9f1;
   background-color: #3e252f;
   border-color: #3e252f;
+  border-radius: 0;
   transition: all 500ms ease-in-out;
 }
 .button:hover {
@@ -201,6 +218,14 @@ main {
   border-color: inherit;
   box-shadow: inherit;
   outline: 0;
+}
+
+.not-valid {
+  border-color: red !important;
+}
+
+.is-validated {
+  border-color: green !important;
 }
 
 .card__image {
