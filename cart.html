@@ -101,15 +101,27 @@
                             </div>
 
                             <div class="modal-body">
-                                <form action="">
+                                <form action="" class="needs-validation" id="root-form-contact" novalidate>
                                     <div class="mb-3">
-                                        <label for="firstName" class="form-label required">Prénom</label>
+                                        <label for="firstName" class="form-label required" pattern="[A-za-z]{2,20}">Prénom</label>
                                         <input type="text" class="form-control" placeholder="Votre prénom" id="firstName" required>
+
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="lastName" class="form-label required">Nom</label>
                                         <input type="text" class="form-control" placeholder="Votre nom" id="lastName" required>
+
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="adresse" class="form-label required">Adresse</label>
+                                        <input type="text" class="form-control" placeholder="Votre adresse" id="address" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="city" class="form-label required">Ville</label>
+                                        <input type="text" class="form-control" placeholder="Ville" id="city" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -117,22 +129,12 @@
                                         <input type="email" class="form-control" placeholder="Votre adresse e-mail" id="email" required>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="postcode" class="form-label required">Code postal</label>
-                                        <input type="number" class="form-control" placeholder="Votre code postal" id="postcode" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="address" class="form-label required">Adresse</label>
-                                        <input type="text" class="form-control" placeholder="Votre adresse" id="address" required>
-                                    </div>
-
                                 </form>
                             </div>
 
                             <div class="modal-footer">
                                 <span class="modal-footer__footnote">* Champs obligatoires</span>
-                                <button type="submit" class="btn button button-form-submit">Commander</button>
+                                <button type="submit" class="btn button button-form-submit">Confirmer la commande</button>
                                 <button type="submit" data-bs-dismiss="modal" class="btn btn-danger rounded-0 button-form-cancel">Annuler</button>
                             </div>
 

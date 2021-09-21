@@ -220,6 +220,14 @@ main {
   outline: 0;
 }
 
+.not-valid {
+  border-color: red !important;
+}
+
+.is-validated {
+  border-color: green !important;
+}
+
 .card__image {
   overflow: hidden;
   padding: 1rem 1rem 0;

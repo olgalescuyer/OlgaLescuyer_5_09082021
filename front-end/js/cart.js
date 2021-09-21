@@ -93,7 +93,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
     productInLocalStorage.forEach((product) => {
 
         idProduct = product.id;
-        console.log(idProduct);
+        // console.log(idProduct);
 
         let price = euro.format((product.price) / 100);
 
@@ -143,6 +143,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 }
 
 // -------------------------------------------------------Supprimer un produit du panier :
+
 let btnDelete = document.querySelectorAll('.cart__button-delete');
 // console.log(btnDelete);
 
@@ -166,8 +167,6 @@ for (let i = 0; i < btnDelete.length; i++) {
 
     })
 }
-
-
 
 //-------------------------------Calculer la somme TOTAL :------------------------------------------------
 let countPriceTotal = [];

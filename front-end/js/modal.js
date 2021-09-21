@@ -2,39 +2,43 @@ var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
     keyboard: false
 })
 
-/*----------------------------------------------------------------*/
-// Récupérer des valeurs du formulaire dans le localStorage :
 
+// Validation du formulaire :
 
-const btnFormSubmit = document.querySelector('.button-form-submit');
+// 1) accès au DOM element :
+let rootFormContact = document.getElementById('root-form-contact');
+// console.log(rootFormContact);
 
+// 2) lancer la fonction de la verification reGex :
+isValidLetter();
 
-btnFormSubmit.addEventListener('click', (e) => {
-    e.preventDefault;
+// 3) raccorder l'accès + écouteur + j'ajout une fonctione callback avec un condition :
+rootFormContact.addEventListener('input', function(e) {
 
-    const formValues = {
-        firstName: document.querySelector('#firstName').value,
-        lastName: document.querySelector('#lastName').value,
-        email: document.querySelector('#email').value,
-        postcode: document.querySelector('#postcode').value,
-        address: document.querySelector('#address').value
+    const value = e.target.value;
+    // console.log(value);
+
+    // let input = document.querySelector('.form-control');
+
+    if (isValidLetter(value)) {
+
+        // input.classList.add('is-validated');
+
+        console.log(Boolean(isValidLetter(value)));
+        console.log("it's true");
+
+    } else {
+
+        // input.classList.add('not-valid');
+
+        console.log(Boolean(isValidLetter(value)));
+        console.log("it's not true");
     }
 
-    // Mettre formValues dans le localStorage :
-    localStorage.setItem('formValues', JSON.stringify(formValues));
-
-    const objCartForm = {
-        productInLocalStorage,
-        formValues
-    }
-    console.log(objCartForm);
-
-
-    location.replace("thank-you-page.html");
-    console.log(formValues)
 })
 
-//------------------------------- Validation du forrmulaire :
+// 2) la fonction de verification reGex elle-même :
+function isValidLetter(value) {
 
-// const firstName = formValues.firstName;
-console.log(objCartForm);
+    return /^[A-Za-z]{2,20}$/.test(value);
+}
