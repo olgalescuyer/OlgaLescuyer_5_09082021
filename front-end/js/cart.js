@@ -1,7 +1,9 @@
 let productInLocalStorage = JSON.parse(localStorage.getItem('product'));
 // console.log(productInLocalStorage);
 
-let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
+// Pour formater le prix du produit :
+const euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
+// soit : .toLocalString("EUR", {style : 'currency', currency: 'EUR'})
 
 let htmlElementsCartDummy = "";
 let htmlElementsCart = "";
