@@ -101,9 +101,9 @@
                             </div>
 
                             <div class="modal-body">
-                                <form action="" class="needs-validation" id="root-form-contact" novalidate>
+                                <form action="" class="" id="root-form-contact" novalidate>
                                     <div class="mb-3">
-                                        <label for="firstName" class="form-label required" pattern="[A-za-z]{2,20}">Prénom</label>
+                                        <label for="firstName" class="form-label required">Prénom</label>
                                         <input type="text" class="form-control" placeholder="Votre prénom" id="firstName" required>
 
                                     </div>
@@ -126,25 +126,23 @@
 
                                     <div class="mb-3">
                                         <label for="email" class="form-label required">E-mail</label>
-                                        <input type="email" class="form-control" placeholder="Votre adresse e-mail" id="email" required>
+                                        <input type="email" class="form-control " placeholder="Votre adresse e-mail" id="email" required>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <span class="modal-footer__footnote">* Champs obligatoires</span>
+                                        <button type="submit" class="btn button button-form-submit">Confirmer la commande</button>
+                                        <button type="submit" data-bs-dismiss="modal" class="btn btn-danger rounded-0 button-form-cancel">Annuler</button>
                                     </div>
 
                                 </form>
                             </div>
 
-                            <div class="modal-footer">
-                                <span class="modal-footer__footnote">* Champs obligatoires</span>
-                                <button type="submit" class="btn button button-form-submit">Confirmer la commande</button>
-                                <button type="submit" data-bs-dismiss="modal" class="btn btn-danger rounded-0 button-form-cancel">Annuler</button>
-                            </div>
-
                         </div>
                     </div>
 
-
                 </div>
-                <!--modal-content -->
-
+                <!--modal end-->
 
             </section>
         </main>
