@@ -38,7 +38,6 @@ fetch(urlProduct)
 
         htmlElementsProduct += `
         <div class="card content__card">
-
             <div class="row g-0">
                 <div class="col-md-4 card__image card__image_product">
                     <img src="${image}" class="img-fluid" alt="appareil photo ${name}">
@@ -50,23 +49,17 @@ fetch(urlProduct)
                         <p class="card-text"><span class="price fs-3">${price}</span><span> TVA incluse</span></p>
         
                         <form action="">
-
                             <div class="d-flex pb-2">
-
                             <label for="list-lenses" class="form__label fs-5">Lentilles disponibles :  </label>
         
                             <select name="list-lenses" id="list-lenses" class="form-select form__item fs-5" aria-label="Default select"></select>
-
                            
                             </div>
                                                          
                             <button type="button" class="btn fs-5 mb-2 button" id="btn-submit">Ajouter au panier</button>
         
                         </form>
-
-
                         <!--Accordion-->
-
                         <div class="accordion accordion-flush " id="accordionFlushExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
@@ -99,7 +92,6 @@ fetch(urlProduct)
                                 </div>
                             </div>
                         </div>
-
                         <!--End-->
                       
         
