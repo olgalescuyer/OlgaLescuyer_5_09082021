@@ -27,13 +27,31 @@ let contact = {};
 // 2) lancer la fonction de la verification reGex :
 // doValidText();
 // doValidEmail();
+//--------------------------------test
 
-// 3) vérifier si les champs sont remplis : 
+// form.addEventListener('submit', valider);
+
+// function valider(e) {
+
+//     if (form.checkValidity() == false) {
+//         e.preventDefault();
+//     }
+//     form.classList.add('was-validated');
+// }
+
+//--------------------------------test
+
+// 3) vérifier si les champs sont remplis:
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Récupérer le formulaire dans l'objet à condition que tous les champs soient remplis - true :
-    if (doValidEmail(form.email.value) && doValidText(form.firstName.value) && doValidText(form.lastName.value) && doValidAddress(form.address.value) && doValidText(form.city.value)) {
+    // je rajoute la class de Bootstrap:
+    // form.classList.add('was-validated');
+
+    isValidEmail();
+
+    // Récupérer le formulaire dans l 'objet à condition que tous les champs soient remplis - true :
+    if (doValidEmail(form.email.value) && form.firstName.value && form.lastName.value && form.address.value && form.city.value) {
         contact = {
             firstName: form.firstName.value,
             lastName: form.lastName.value,
@@ -42,43 +60,136 @@ form.addEventListener('submit', function(e) {
             email: form.email.value
         }
         console.log(contact);
-    }
 
-    // pour les champs non-remplis :
-    for (let i = 0; i < allInputsForm.length; i++) {
+    } else {
 
-        // condition pour les champs non-remplis :
-        if (!allInputsForm[i].value) {
+        // je mets la class de bootstrap :
+        form.classList.add('was-validated');
 
-            // je rajoute la class de Bootstrap : 
-            form.classList.add('was-validated');
+        // pour eviter la duplication des erreurs :
+        let errors = form.querySelectorAll('.invalid-feedback');
+
+        for (let i = 0; i < errors.length; i++) {
+            errors[i].remove();
         }
+
+        // pour les champs non-remplis :
+        for (let i = 0; i < allInputsForm.length; i++) {
+
+            // condition pour les champs non-remplis :
+            if (!allInputsForm[i].value) {
+
+                let error = document.createElement('div');
+
+                // je mets la class de bootstrap :
+                error.className = 'invalid-feedback';
+                error.innerHTML = 'Veuillez remplir ce champ !';
+                allInputsForm[i].parentElement.appendChild(error, allInputsForm[i]);
+
+
+                // console.log(allInputsForm[i]);
+
+            }
+
+        }
+
+
 
     }
 
 });
 
+// la function de vérification de reGex :
+function isValidEmail() {
+
+    // je crée un élément auquel je vais assigner des class de message d'erreur :
+    let valid = document.createElement('div');
+
+    // pour eviter la duplication :
+    removeErrorMessage();
+    removeConfirmMessege();
+
+    // les condition d'application de la fonction isValid :
+    if (!doValidEmail(form.email.value) && form.email.value) {
+
+        // je enleve la responsabilité de bootstrap car il tolère les faute :
+        form.classList.remove('was-validated');
+
+        // je mets la class  :
+        valid.className = 'invalid-feedback-form';
+        valid.innerHTML = 'L’adresse e-mail est-elle bien valide ? Voici un exemple de format : votre.nom@domaine.fr';
+        form.email.parentElement.appendChild(valid, form.email);
+
+    } else if (doValidEmail(form.email.value)) {
+
+        valid.classList.toggle('valid-feedback-form');
+
+        // je mets la class :
+        valid.className = 'valid-feedback-form';
+        valid.innerHTML = 'L’adresse e-mail est bien valide !';
+        form.email.parentElement.appendChild(valid, form.email);
+
+        console.log(form.email.value);
+    }
+}
+
+
+
+//pour eviter la duplication de message sous les champs de validation j'applaqque la fonction avec une boucle :
+removeErrorMessage = function() {
+
+    let errors = form.querySelectorAll('.invalid-feedback-form');
+
+    for (let i = 0; i < errors.length; i++) {
+        errors[i].remove();
+
+    }
+
+}
+removeConfirmMessege = function() {
+
+    let confirm = form.querySelectorAll('.valid-feedback-form');
+
+    for (let i = 0; i < confirm.length; i++) {
+        confirm[i].remove();
+
+    }
+}
+
 
 // 2) les fonctions de verification reGex elles-même :
 //--- pour les éléments textuelles :
-function doValidText(valueText) {
 
-    return /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]{2,20}$/.test(valueText);
+// function doValidText(valueText) {
+
+//     return /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]{2,20}$/.test(valueText);
+// }
+
+// //--- pour les éléments de l'adresse :
+// function doValidAddress(valueAddress) {
+
+//     return /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]{2,20}$/.test(valueAddress);
+// }
+
+// //--- pour un élément email : 
+
+
+function doValidEmail() {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email.value)) {
+        return (true)
+    }
+
+    return (false)
 }
 
-//--- pour les éléments de l'adresse :
-function doValidAddress(valueAddress) {
 
-    return /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]{2,20}$/.test(valueAddress);
-}
 
-//--- pour un élément email : 
-function doValidEmail(valueEmail) {
+// function doValidEmail(valueEmail) {
 
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/;
-    return re.test(String(valueEmail).toLowerCase(valueEmail));
+//     const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+//     return re.test(String(valueEmail).toLowerCase(valueEmail));
 
-}
+// }
 
 
 

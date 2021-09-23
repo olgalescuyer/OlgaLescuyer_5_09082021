@@ -19,3 +19,19 @@
 .is-validated {
     border-color: green!important;
 }
+
+.invalid-feedback-form {
+    display: block;
+    width: 100%;
+    margin-top: .025rem;
+    font-size: .875rem !important;
+    color: #dc3545;
+}
+
+.valid-feedback-form {
+    display: block;
+    width: 100%;
+    margin-top: .025rem;
+    font-size: .875rem !important;
+    color: green;
+}
