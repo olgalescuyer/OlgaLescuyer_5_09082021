@@ -19,27 +19,7 @@ const inputText = form.querySelectorAll(`input[type = "text"]`);
 
 const allInputsForm = form.querySelectorAll('input');
 
-
-
 let contact = {};
-
-
-// 2) lancer la fonction de la verification reGex :
-// doValidText();
-// doValidEmail();
-//--------------------------------test
-
-// form.addEventListener('submit', valider);
-
-// function valider(e) {
-
-//     if (form.checkValidity() == false) {
-//         e.preventDefault();
-//     }
-//     form.classList.add('was-validated');
-// }
-
-//--------------------------------test
 
 // 3) vérifier si les champs sont remplis:
 form.addEventListener('submit', function(e) {
@@ -60,6 +40,11 @@ form.addEventListener('submit', function(e) {
             email: form.email.value
         }
         console.log(contact);
+
+
+        doFetchPost();
+
+
 
     } else {
 
@@ -92,8 +77,6 @@ form.addEventListener('submit', function(e) {
             }
 
         }
-
-
 
     }
 
@@ -129,11 +112,9 @@ function isValidEmail() {
         valid.innerHTML = 'L’adresse e-mail est bien valide !';
         form.email.parentElement.appendChild(valid, form.email);
 
-        console.log(form.email.value);
+        // console.log(form.email.value);
     }
 }
-
-
 
 //pour eviter la duplication de message sous les champs de validation j'applaqque la fonction avec une boucle :
 removeErrorMessage = function() {
@@ -172,17 +153,14 @@ removeConfirmMessege = function() {
 // }
 
 // //--- pour un élément email : 
-
-
 function doValidEmail() {
+
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email.value)) {
         return (true)
     }
 
     return (false)
 }
-
-
 
 // function doValidEmail(valueEmail) {
 
@@ -191,11 +169,9 @@ function doValidEmail() {
 
 // }
 
-
-
 // // --------------------------------------------------Validation du formulaire - les bouttons 'confirmer' et 'annuler' :
 
-// //--- annuler :
+//--- annuler :
 let btnCancel = document.querySelector('.button-form-cancel');
 // console.log(btnCancel);
 
@@ -203,3 +179,58 @@ btnCancel.addEventListener('click', function(e) {
 
     location.reload();
 })
+
+//--- confirmer la commande :
+//-- (recupération object du formulair + productInLocalStorage) + fetch POST + redirection sur page 'confirmation de la commande'--//
+
+
+
+
+
+function doFetchPost() {
+
+    const urlOrder = 'http://localhost:3000/api/cameras/order';
+
+
+
+    // pour recupérer des id des products :
+    let products = [];
+
+    productInLocalStorage.forEach(product => {
+        products.push(product.id);
+    });
+
+    // console.log(products);
+
+    fetch(urlOrder, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({ contact, products })
+        })
+        .then(response => response.json())
+        .then(function(response) {
+
+
+
+            // console.log(response["orderId"]);
+
+            // je crée la clé pour localStorage et envoie :
+            localStorage.setItem("order", response["orderId"]);
+
+            localStorage.setItem("total", productInLocalStorage["price"]);
+
+            console.log(productInLocalStorage);
+
+
+
+            // location.replace("confirmation.html");
+        })
+        .catch(function(error) {
+
+            console.log(error)
+
+        })
+}
