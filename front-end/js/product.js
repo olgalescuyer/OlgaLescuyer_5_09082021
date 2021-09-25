@@ -17,17 +17,13 @@ let urlProduct = `http://localhost:3000/api/cameras/${id}`;
 let euro = Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 // .toLocalString("EUR", {style : 'currency', currency: 'EUR'})
 
-
-
-
-
 // Afficher le produit (de l'objet) qui a été sélectionné par l'id :
 fetch(urlProduct)
 
 .then((resp) => resp.json())
 
 .then(function(data) {
-        console.log(data);
+        // console.log(data);
 
         let name = data.name
         let price = euro.format((data.price) / 100);
@@ -44,7 +40,7 @@ fetch(urlProduct)
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h1 class="card-title">${name}</h1>
+                        <h1 class="card-title" id="">${name}</h1>
         
                         <p class="card-text"><span class="price fs-3">${price}</span><span> TVA incluse</span></p>
         
@@ -110,7 +106,7 @@ fetch(urlProduct)
 
         lenses.forEach((lense) => {
 
-            console.log(lense)
+            // console.log(lense)
             innerSelect += `<option value="${lense}" class="form__option">${lense}</option>`
 
         });
@@ -154,12 +150,10 @@ fetch(urlProduct)
                 name: name,
                 lense: choiceOption,
                 price: data.price,
-                quantity: 1,
                 id: idProduct,
 
             };
-            console.log(objProduct);
-
+            console.log('au clique, je récupère un objet : ', objProduct);
 
             //-----------------------------------------------------------localStorage :
             //Je controle à l'aide de la méthode 'getItem' s'il y a la clé 'product' que je vais créer dans le localStorage; ensuite, je transforme l'objet de produit en JSON + je l'assigne à une variable :
@@ -171,11 +165,13 @@ fetch(urlProduct)
 
                 productInLocalStorage.push(objProduct);
                 localStorage.setItem('product', JSON.stringify(productInLocalStorage));
-                console.log(productInLocalStorage);
+
+                console.log('productInLocalStorage :', productInLocalStorage);
 
             }
             // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
             else {
+
                 // Je récupère ma variable dans le tableau : 
                 productInLocalStorage = [];
                 // ensuite, j'envoie le produit séléctionné qui se transforme en json pour aller au localStorage :
@@ -183,7 +179,7 @@ fetch(urlProduct)
 
                 // Je crée la clé 'product' pour le tableau qui contient le produit choisi au clique + je transforme en json à l'aide de la méthode stringify :
                 localStorage.setItem('product', JSON.stringify(productInLocalStorage));
-                // console.log(productInLocalStorage);
+
             }
 
             // Fonction pour le badge dans le header :
