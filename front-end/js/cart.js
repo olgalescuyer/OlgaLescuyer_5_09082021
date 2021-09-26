@@ -10,6 +10,25 @@ let htmlElementsCart = "";
 let htmlElementsCartProduct = "";
 let idProduct = "";
 
+//-------------------------------test- récuperer l'index :
+let indices = [];
+
+let array = productInLocalStorage;
+// console.log(array);
+
+array.forEach((element) => {
+
+    let idx = array.indexOf(element);
+
+    while (idx != -1) {
+        indices.push(idx);
+        idx = array.indexOf(element, idx + 1);
+    }
+
+})
+
+// console.log(indices);
+
 // si le panier est vide :
 if (productInLocalStorage === null || productInLocalStorage == 0) {
 
@@ -94,6 +113,11 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
     productInLocalStorage.forEach((product) => {
 
+        // console.log(product);
+        // console.log(productInLocalStorage);
+
+
+
         idProduct = product.id;
         // console.log(idProduct);
 
@@ -114,7 +138,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
                         </div>
                     </div>
                     <div class="col-sm-4 d-flex flex-column justify-content-center p-2">
-                        <h2 class="fs-3 product-name">${product.name}</h2>
+                        <h2 class="fs-3 product-name" id="">${product.name}</h2>
                         <p class="fs-5 product-option">Lentille : ${product.lense}</p>
                     </div>
                     <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
@@ -125,7 +149,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
                     </div>
                     <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
 
-                        <button class="cart__button-delete">
+                        <button class="cart__button-delete" id="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -144,30 +168,63 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
 }
 
-// -------------------------------------------------------Supprimer un produit du panier :
+// -------------------------------------------------------Supprimer un produit/ des produits du panier :
 
-let btnDelete = document.querySelectorAll('.cart__button-delete');
+// je récupère tous les boutons ayant la class appropriée :
+let btnDelete = document.getElementsByClassName('cart__button-delete');
 // console.log(btnDelete);
 
+// je vais utiliser le tableau des indexes de productInLocalStorage que j'ai obtenu en haut donc je les controle :
+// console.log(indices);
+
+// je fais une boucle pour ces boutons pour assigner la valeur de l'id qui va être égales a l'index productInLocalStorage :
 for (let i = 0; i < btnDelete.length; i++) {
+
     btnDelete[i].addEventListener('click', (e) => {
         e.preventDefault();
 
-        let idForDelete = productInLocalStorage[i].id;
-        // console.log(idForDelete);
+        // je fais une variable pour le boutton sur lequel on a cliqué : 
+        let btnClicked = btnDelete[i];
+        // console.log(btnClicked);
 
-        productInLocalStorage = productInLocalStorage.filter(element => element.id !== idForDelete);
-        // console.log(productInLocalStorage);
+        // ici je controle que au click j'ai récupère la bonne valeure de l'index :
+        // console.log(indices[i]);
 
-        // je renvoie un nouveau tableau dans le localStorage :
-        localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+        // ensuit je l'assigne à l'id de boutton - clicqué dans le html id= :
+        btnClicked.id = indices[i];
+        // console.log(btnClicked);
 
-        // une fenetre modal pour avertir qu'un produit a été supprimé sur
+        // ici 'a' est égal à la valeur de l'id ( oui, j'ai perdu l'imagination pour donner les noms aux variables :`)  : 
+        let a = btnClicked.id;
+        // console.log(a);
 
-        // et recharger la page :
-        window.location.reload();
+        // et je fais une condition qui sera bien entendu true :
+        if (a == indices[i]) {
+
+            // console.log('ok');
+            // là je coup cet objet ici dans le console :
+            productInLocalStorage.splice(a, 1);
+
+            // et je renvoie un nouveau tableau au localStorage pour que ça corresponde à l'info de la page :
+            localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+
+            // ensuit je supprime l'élément dans le html par l'accès au DOM :
+            btnDelete[i] = e.target;
+            btnDelete[i].parentElement.parentElement.remove();
+
+            // controler un nouveau tableau et des bouttons restans après la manipulation :
+            // console.log(productInLocalStorage);
+            // console.log(btnDelete);
+
+            // et recharger la page :
+            window.location.reload();
+
+            // mon counter-badge en haut de la page et la somme total sont strictement liés au vrais localStorage donc ils se renouvellent tout seuls :))
+
+        }
 
     })
+
 }
 
 //-------------------------------Calculer la somme TOTAL :------------------------------------------------
@@ -188,8 +245,11 @@ const countTotal = countPriceTotal.reduce(reducer, 0);
 
 let convert = euro.format((countTotal) / 100);
 
+// afficher la somme sous-total et total :
 let spanCount = document.querySelector('.root-counter');
 spanCount.innerText = `${convert}`;
 
 let spanCountTotal = document.querySelector('.root-counter-total');
 spanCountTotal.innerText = `${convert}`;
+
+localStorage.setItem("total", convert);

@@ -228,6 +228,22 @@ main {
   border-color: green !important;
 }
 
+.invalid-feedback-form {
+  display: block;
+  width: 100%;
+  margin-top: 0.025rem;
+  font-size: 0.875rem !important;
+  color: #dc3545;
+}
+
+.valid-feedback-form {
+  display: block;
+  width: 100%;
+  margin-top: 0.025rem;
+  font-size: 0.875rem !important;
+  color: green;
+}
+
 .card__image {
   overflow: hidden;
   padding: 1rem 1rem 0;
