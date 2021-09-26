@@ -15,7 +15,7 @@ const city = form.querySelector('#city');
 const email = form.querySelector('#email');
 
 const inputEmail = form.querySelector(`input[type = "email"]`);
-const inputText = form.querySelectorAll(`input[type = "text"]`);
+const allInputsText = form.querySelectorAll(`input[type = "text"]`);
 
 const allInputsForm = form.querySelectorAll('input');
 
@@ -26,12 +26,14 @@ form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     // je rajoute la class de Bootstrap:
-    // form.classList.add('was-validated');
+    // form.classList.add('was-validated');*
+
 
     isValidEmail();
 
+
     // Récupérer le formulaire dans l 'objet à condition que tous les champs soient remplis - true :
-    if (doValidEmail(form.email.value) && form.firstName.value && form.lastName.value && form.address.value && form.city.value) {
+    if (regexEmail(form.email.value) && regexText(form.firstName.value) && form.lastName.value && regexdAddress(form.address.value) && form.city.value) {
         contact = {
             firstName: form.firstName.value,
             lastName: form.lastName.value,
@@ -47,6 +49,7 @@ form.addEventListener('submit', function(e) {
 
 
     } else {
+
 
         // je mets la class de bootstrap :
         form.classList.add('was-validated');
@@ -71,6 +74,15 @@ form.addEventListener('submit', function(e) {
                 error.innerHTML = 'Veuillez remplir ce champ !';
                 allInputsForm[i].parentElement.appendChild(error, allInputsForm[i]);
 
+                // -----test anim :
+
+                allInputsForm[i].style.background = '#ffb8b8';
+                allInputsForm[i].classList.add('anim-error');
+
+                setTimeout(() => {
+                    allInputsForm[i].classList.remove('anim-error');
+                }, 500)
+
 
                 // console.log(allInputsForm[i]);
 
@@ -87,14 +99,16 @@ function isValidEmail() {
 
     // je crée un élément auquel je vais assigner des class de message d'erreur :
     let valid = document.createElement('div');
+    console.log(valid);
 
     // pour eviter la duplication :
     removeErrorMessage();
-    removeConfirmMessege();
+    removeConfirmMessage();
 
     // les condition d'application de la fonction isValid :
-    if (!doValidEmail(form.email.value) && form.email.value) {
+    if (!regexEmail(form.email.value) && form.email.value) {
 
+        console.log('not ok');
         // je enleve la responsabilité de bootstrap car il tolère les faute :
         form.classList.remove('was-validated');
 
@@ -103,9 +117,10 @@ function isValidEmail() {
         valid.innerHTML = 'L’adresse e-mail est-elle bien valide ? Voici un exemple de format : votre.nom@domaine.fr';
         form.email.parentElement.appendChild(valid, form.email);
 
-    } else if (doValidEmail(form.email.value)) {
+    } else if (regexEmail(form.email.value)) {
 
         valid.classList.toggle('valid-feedback-form');
+        console.log('ok');
 
         // je mets la class :
         valid.className = 'valid-feedback-form';
@@ -116,44 +131,35 @@ function isValidEmail() {
     }
 }
 
-//pour eviter la duplication de message sous les champs de validation j'applaqque la fonction avec une boucle :
-removeErrorMessage = function() {
 
-    let errors = form.querySelectorAll('.invalid-feedback-form');
 
-    for (let i = 0; i < errors.length; i++) {
-        errors[i].remove();
 
-    }
 
-}
-removeConfirmMessege = function() {
-
-    let confirm = form.querySelectorAll('.valid-feedback-form');
-
-    for (let i = 0; i < confirm.length; i++) {
-        confirm[i].remove();
-
-    }
-}
 
 
 // 2) les fonctions de verification reGex elles-même :
-//--- pour les éléments textuelles :
+// --- pour les éléments textuelles :
 
-// function doValidText(valueText) {
+function regexText(valueText) {
 
-//     return /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]{2,20}$/.test(valueText);
-// }
+    if (valueText) {
+        console.log('ok');
+        return /^[a-zA-Z -]{2,20}$/.test(valueText);
 
-// //--- pour les éléments de l'adresse :
-// function doValidAddress(valueAddress) {
+    }
 
-//     return /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]{2,20}$/.test(valueAddress);
-// }
+
+}
+
+
+//--- pour les éléments de l'adresse :
+function regexdAddress(valueAddress) {
+
+    return /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]{2,20}$/.test(valueAddress);
+}
 
 // //--- pour un élément email : 
-function doValidEmail() {
+function regexEmail() {
 
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email.value)) {
         return (true)
@@ -168,6 +174,29 @@ function doValidEmail() {
 //     return re.test(String(valueEmail).toLowerCase(valueEmail));
 
 // }
+
+//pour eviter la duplication de message sous les champs de validation j'applaqque la fonction avec une boucle :
+
+function removeErrorMessage() {
+
+    let errors = form.querySelectorAll('.invalid-feedback-form');
+
+    for (let i = 0; i < errors.length; i++) {
+        errors[i].remove();
+
+    }
+
+}
+
+function removeConfirmMessage() {
+
+    let confirm = form.querySelectorAll('.valid-feedback-form');
+
+    for (let i = 0; i < confirm.length; i++) {
+        confirm[i].remove();
+
+    }
+}
 
 // // --------------------------------------------------Validation du formulaire - les bouttons 'confirmer' et 'annuler' :
 
@@ -226,7 +255,7 @@ function doFetchPost() {
 
 
 
-            location.replace("confirmation.html");
+            // location.replace("confirmation.html");
         })
         .catch(function(error) {
 

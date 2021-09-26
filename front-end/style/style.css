@@ -11,6 +11,14 @@ body {
   min-height: 100vh;
 }
 
+/*---pour centre en axe horisontale :*/
+main {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -89,58 +97,46 @@ input {
   border-top: 1px solid #bcb4bc;
 }
 
-.content {
-  padding: 1.3rem;
-}
-.content__title {
-  padding-bottom: 0.6rem;
-}
 @media (min-width: 576px) {
-  .content__box {
+  .content-index__box {
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
   }
 }
-.content__card {
-  max-width: 100%;
-  border-radius: 0;
-}
-.content__card_index {
+.content-index__card-custom {
   margin-bottom: 0.6rem;
 }
 @media (min-width: 576px) {
-  .content__card_index {
+  .content-index__card-custom {
     max-width: 48%;
     margin-right: 0.6rem;
   }
 }
 @media (min-width: 992px) {
-  .content__card_index {
+  .content-index__card-custom {
     width: 30%;
   }
 }
 @media (min-width: 1200px) {
-  .content__card_index {
+  .content-index__card-custom {
     width: 19%;
   }
 }
-.content__card-cart {
+.content-index__card-cart {
   background-color: inherit;
 }
 
-.cart__title {
-  background-color: white;
-}
-.cart__button-delete {
-  transform: scale(1.3);
+@media (min-width: 992px) {
+  .content-cart-left {
+    width: 70%;
+  }
 }
 
-main {
-  flex: 1 0 auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+@media (min-width: 992px) {
+  .content-cart-right {
+    width: 30%;
+  }
 }
 
 .footer {
@@ -176,19 +172,18 @@ main {
   font-size: smaller;
 }
 
-.button {
+.button-custom {
   color: #f3e9f1;
   background-color: #3e252f;
   border-color: #3e252f;
-  border-radius: 0;
   transition: all 500ms ease-in-out;
 }
-.button:hover {
+.button-custom:hover {
   opacity: 0.7;
   transform: scale(1.01);
   color: #f3e9f1;
 }
-.button:focus {
+.button-custom:focus {
   box-shadow: inherit;
 }
 
@@ -200,12 +195,16 @@ main {
   box-shadow: inherit;
   color: inherit;
 }
-.accordion-button ::after {
+.accordion-button::after {
   color: #261624 !important;
 }
 
-.accordion-button:not(.collapsed)::after {
-  color: #261624 !important;
+.cart__button-delete {
+  transform: scale(1.5);
+  transition: transform 500ms ease-in-out;
+}
+.cart__button-delete:hover {
+  transform: scale(2);
 }
 
 .form__label {
@@ -244,6 +243,24 @@ main {
   color: green;
 }
 
+.anim-error {
+  animation: anim-error 0.3s ease-in-out;
+}
+
+@keyframes anim-error {
+  0% {
+    transform: translateX(0px);
+  }
+  33% {
+    transform: translateX(5px);
+  }
+  66% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
 .card__image {
   overflow: hidden;
   padding: 1rem 1rem 0;

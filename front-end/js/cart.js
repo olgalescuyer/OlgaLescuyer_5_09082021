@@ -47,7 +47,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
         </div>
 
         <div class="text-center p-3">
-            <a class="btn fs-5 button" href="index.html" role="button">Continuer mes achats</a>
+            <a class="btn rounded-0 fs-5 button-custom" href="index.html" role="button">Continuer mes achats</a>
         </div>
 
     </div>
@@ -62,17 +62,17 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
     htmlElementsCart = `
 
-    <div class="card content__card">
+    <div class="card rounded-0">
 
-        <h1 class="cart__title fs-2 p-3 fw-bold">Mon panier : 
+        <h1 class="fs-2 p-3 fw-bold bg-white">Mon panier : 
         </h1>
 
-        <div class="d-flex" >
+        <div class="d-lg-flex" >
 
-        <div class="w-75" id="root-cart-product"></div> 
+        <div class="content-cart-left" id="root-cart-product"></div> 
 
 
-        <div class="w-25 d-flex " id="root-cart-counter">
+        <div class=" d-flex content-cart-right" id="root-cart-counter">
 
         <div class="d-flex flex-column w-100 h-100 p-3 bg-white ">
 
@@ -94,7 +94,7 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
             </div>
            
             <form class="mt-2" action="">
-                 <button type="button" class="btn fs-5 fw-bold w-100 button cart__button-submit" data-bs-toggle="modal" data-bs-target="#myModal">COMMANDER</button>
+                 <button type="button" class="btn rounded-0 w-100 fs-5 fw-bold button-custom cart__button-submit" data-bs-toggle="modal" data-bs-target="#myModal">COMMANDER</button>
             </form>
         </div>
 
@@ -137,25 +137,32 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
                
                         </div>
                     </div>
+
+                   
                     <div class="col-sm-4 d-flex flex-column justify-content-center p-2">
-                        <h2 class="fs-3 product-name" id="">${product.name}</h2>
-                        <p class="fs-5 product-option">Lentille : ${product.lense}</p>
+                        <h2 class="fs-3  product-name" id="">${product.name}</h2>
+                        <p class="fs-5 m-0  product-option">Lentille : ${product.lense}</p>
                     </div>
                     <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
-                        <span>X1</span>
+                        <span class="">X1</span>
                     </div>
                     <div class="col-sm-3 d-flex flex-column justify-content-center p-2">
-                        <span class="fs-4 product-price">Price ${price}</span>
+                        <span class="fs-4 product-price">Prix: ${price}</span>
                     </div>
-                    <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
 
-                        <button class="cart__button-delete" id="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                            </svg>
-                        </button>
+                    <div class="col-sm-1 d-flex flex-column justify-content-center p-2 ">
+
+                    <div class="d-flex">
+                    <button class="cart__button-delete" id="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                    </button>
+                    </div>
+                      
                        
+                    
                     </div>
                 </div>
         

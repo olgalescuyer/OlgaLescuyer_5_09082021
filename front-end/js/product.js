@@ -33,7 +33,7 @@ fetch(urlProduct)
         // console.log(idProduct);
 
         htmlElementsProduct += `
-        <div class="card content__card">
+        <div class="card rounded-0 ">
             <div class="row g-0">
                 <div class="col-md-4 card__image card__image_product">
                     <img src="${image}" class="img-fluid" alt="appareil photo ${name}">
@@ -52,7 +52,7 @@ fetch(urlProduct)
                            
                             </div>
                                                          
-                            <button type="button" class="btn fs-5 mb-2 button" id="btn-submit">Ajouter au panier</button>
+                            <button type="button" class="btn rounded-0 fs-5 mb-2 button-custom" id="btn-submit">Ajouter au panier</button>
         
                         </form>
                         <!--Accordion-->

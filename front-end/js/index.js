@@ -23,7 +23,7 @@ fetch(url)
 
             // Mon template :
             htmlElements += ` 
-            <div class="card content__card content__card_index">
+            <div class="card rounded-0 content-index__card-custom">
             <div class="card__image card__image-index">
                 <img src="${camera.imageUrl}" class="img-fluid " alt="appareil photo">
             </div>
@@ -31,7 +31,7 @@ fetch(url)
                 <h2 class="card-title h5">${camera.name}</h2>
                 <p class="card-text"><span class="price">${euro.format((camera.price) / 100)} TVA incluse</span></p>
              
-                <div class="text-center"><a href=" product.html?${camera._id}" class="btn button w-100" title="cliquer pour aller à la page de produit" id="${camera._id}">En savoir plus</a></div>
+                <div class="text-center"><a href=" product.html?${camera._id}" class="btn button-custom rounded-0 w-100" title="cliquer pour aller à la page de produit" id="${camera._id}">En savoir plus</a></div>
             </div>
             </div>
              `

@@ -35,3 +35,23 @@
     font-size: .875rem !important;
     color: green;
 }
+
+// ---- anim :
+.anim-error {
+    animation: anim-error 0.3s ease-in-out;
+}
+
+@keyframes anim-error {
+    0% {
+        transform: translateX(0px);
+    }
+    33% {
+        transform: translateX(5px);
+    }
+    66% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
