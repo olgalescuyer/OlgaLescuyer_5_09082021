@@ -220,13 +220,13 @@ function doFetchPost() {
             // je crée la clé pour localStorage et envoie :
             localStorage.setItem("order", response["orderId"]);
 
-            localStorage.setItem("total", productInLocalStorage["price"]);
+
 
             console.log(productInLocalStorage);
 
 
 
-            // location.replace("confirmation.html");
+            location.replace("confirmation.html");
         })
         .catch(function(error) {
 

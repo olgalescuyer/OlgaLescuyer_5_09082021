@@ -251,3 +251,5 @@ spanCount.innerText = `${convert}`;
 
 let spanCountTotal = document.querySelector('.root-counter-total');
 spanCountTotal.innerText = `${convert}`;
+
+localStorage.setItem("total", convert);
