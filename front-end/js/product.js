@@ -45,7 +45,7 @@ fetch(urlProduct)
                         <p class="card-text"><span class="price fs-3">${price}</span><span> TVA incluse</span></p>
         
                         <form action="">
-                            <div class="d-flex pb-2">
+                            <div class="d-sm-flex pb-2">
                             <label for="list-lenses" class="form__label fs-5">Lentilles disponibles :  </label>
         
                             <select name="list-lenses" id="list-lenses" class="form-select form__item fs-5" aria-label="Default select"></select>
@@ -163,8 +163,7 @@ fetch(urlProduct)
 
             if (productInLocalStorage) {
 
-                productInLocalStorage.push(objProduct);
-                localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+                putInLocalStorage(objProduct);
 
                 console.log('productInLocalStorage :', productInLocalStorage);
 
@@ -172,18 +171,23 @@ fetch(urlProduct)
             // s'il n'y a pas de produit enregistré dans le localStorage - false (null) ->> : 
             else {
 
-                // Je récupère ma variable dans le tableau : 
+                // Le tableau pour les objets sélectionnés : 
                 productInLocalStorage = [];
-                // ensuite, j'envoie le produit séléctionné qui se transforme en json pour aller au localStorage :
-                productInLocalStorage.push(objProduct);
+                // ensuite, j'envoie le produit séléctionné qui se transforme en json pour aller au localStorage,
+                // je crée la clé 'product' pour le tableau qui contient le produit choisi au clique + je transforme en json à l'aide de la méthode stringify :
 
-                // Je crée la clé 'product' pour le tableau qui contient le produit choisi au clique + je transforme en json à l'aide de la méthode stringify :
-                localStorage.setItem('product', JSON.stringify(productInLocalStorage));
-
+                putInLocalStorage(objProduct);
             }
 
             // Fonction pour le badge dans le header :
             counterBadge();
+
+            function putInLocalStorage(obj) {
+
+                productInLocalStorage.push(obj);
+                localStorage.setItem('product', JSON.stringify(productInLocalStorage));
+
+            }
 
         });
 
