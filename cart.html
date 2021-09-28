@@ -108,31 +108,37 @@
                                 <form action="" class="needs-validation" id="root-form-contact" novalidate>
                                     <div class="mb-3">
                                         <label for="firstName" class="form-label required">Prénom</label>
-                                        <input type="text" class="form-control" placeholder="Votre prénom" id="firstName" required>
+                                        <input type="text" name="firstName" class="form-control" placeholder="Votre prénom" id="firstName" required>
+                                        <p>Vérifiez le prénom. Ce champ accepte uniquement les lettres.</p>
 
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="lastName" class="form-label required">Nom</label>
-                                        <input type="text" class="form-control" placeholder="Votre nom" id="lastName" required>
+                                        <input type="text" name="lastName" class="form-control" placeholder="Votre nom" id="lastName" required>
+                                        <p>Vérifiez votre nom. Ce champ accepte uniquement les lettres.</p>
 
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="adresse" class="form-label required">Adresse</label>
-                                        <input type="text" class="form-control" placeholder="Votre adresse" id="address" required>
+                                        <label for="address" class="form-label required">Adresse</label>
+                                        <input type="text" name="address" class="form-control" placeholder="Votre adresse" id="address" required>
+                                        <p>Saisissez une adresse correcte .</p>
+
 
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="city" class="form-label required">Ville</label>
-                                        <input type="text" class="form-control" placeholder="Ville" id="city" required>
+                                        <input type="text" name="city" class="form-control" placeholder="Ville" id="city" required>
+                                        <p>Saisissez une adresse correcte .</p>
 
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="email" class="form-label required">E-mail</label>
-                                        <input type="email" class="form-control " placeholder="Votre adresse e-mail" id="email" required>
+                                        <input type="email" name="email" class="form-control " placeholder="Votre adresse e-mail" id="email" required>
+                                        <p>Saisissez une adresse électronique correcte (nom@gmail.com, par exemple).</p>
 
                                     </div>
 

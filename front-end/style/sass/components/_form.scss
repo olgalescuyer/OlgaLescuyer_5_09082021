@@ -12,28 +12,16 @@
     }
 }
 
-.not-valid {
-    border-color: red!important;
-}
-
-.is-validated {
-    border-color: green!important;
-}
-
 .invalid-feedback-form {
-    display: block;
-    width: 100%;
-    margin-top: .025rem;
-    font-size: .875rem !important;
+    @include input-valid-custom;
     color: #dc3545;
+    border: 1px solid orange;
 }
 
 .valid-feedback-form {
-    display: block;
-    width: 100%;
-    margin-top: .025rem;
-    font-size: .875rem !important;
+    @include input-valid-custom;
     color: green;
+    border: 1px solid #36cc36;
 }
 
 // ---- anim :
@@ -54,4 +42,18 @@
     100% {
         transform: translateX(0px);
     }
+}
+
+input+p {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: orange;
+    opacity: 0;
+    height: 0;
+}
+
+input.invalid-feedback-form+p {
+    opacity: 1;
+    height: auto;
+    margin-bottom: 20px;
 }

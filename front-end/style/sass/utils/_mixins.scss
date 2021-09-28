@@ -8,3 +8,14 @@
     background: rgb(220, 133, 37);
     background: linear-gradient(142deg, rgba(220, 133, 37, 1) 2%, rgba(146, 92, 247, 1) 100%);
 }
+
+@mixin input-valid-custom {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    margin-top: .025rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border-radius: .25rem;
+}

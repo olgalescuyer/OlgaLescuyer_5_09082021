@@ -219,28 +219,30 @@ input {
   outline: 0;
 }
 
-.not-valid {
-  border-color: red !important;
-}
-
-.is-validated {
-  border-color: green !important;
-}
-
 .invalid-feedback-form {
   display: block;
   width: 100%;
+  padding: 0.375rem 0.75rem;
   margin-top: 0.025rem;
-  font-size: 0.875rem !important;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  border-radius: 0.25rem;
   color: #dc3545;
+  border: 1px solid orange;
 }
 
 .valid-feedback-form {
   display: block;
   width: 100%;
+  padding: 0.375rem 0.75rem;
   margin-top: 0.025rem;
-  font-size: 0.875rem !important;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  border-radius: 0.25rem;
   color: green;
+  border: 1px solid #36cc36;
 }
 
 .anim-error {
@@ -261,6 +263,20 @@ input {
     transform: translateX(0px);
   }
 }
+input + p {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: orange;
+  opacity: 0;
+  height: 0;
+}
+
+input.invalid-feedback-form + p {
+  opacity: 1;
+  height: auto;
+  margin-bottom: 20px;
+}
+
 .card__image {
   overflow: hidden;
   padding: 1rem 1rem 0;
