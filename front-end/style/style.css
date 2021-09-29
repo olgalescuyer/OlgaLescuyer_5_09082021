@@ -81,7 +81,7 @@ input {
   }
   .header .header__subtitle {
     text-align: center;
-    border-color: 1px solide #261624;
+    border: 1px solide #261624;
   }
 }
 @media (min-width: 992px) {
