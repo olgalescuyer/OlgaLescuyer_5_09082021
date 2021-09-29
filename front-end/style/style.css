@@ -264,17 +264,20 @@ input {
   }
 }
 input + p {
+  background: linear-gradient(142deg, #dc8525 2%, #925cf7 100%);
+  text-shadow: none;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 0.9em;
   font-weight: bold;
-  color: orange;
   opacity: 0;
   height: 0;
 }
-
 input.invalid-feedback-form + p {
   opacity: 1;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .card__image {

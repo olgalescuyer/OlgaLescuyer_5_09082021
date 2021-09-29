@@ -19,3 +19,11 @@
     line-height: 1.5;
     border-radius: .25rem;
 }
+
+@mixin gradient-font {
+    background: linear-gradient(142deg, rgba(220, 133, 37, 1) 2%, rgba(146, 92, 247, 1) 100%);
+    text-shadow: none;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

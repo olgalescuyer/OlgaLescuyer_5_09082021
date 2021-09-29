@@ -24,7 +24,7 @@
     border: 1px solid #36cc36;
 }
 
-// ---- anim :
+// ---- animation de négation :
 .anim-error {
     animation: anim-error 0.3s ease-in-out;
 }
@@ -44,16 +44,19 @@
     }
 }
 
-input+p {
-    font-size: 0.9em;
-    font-weight: bold;
-    color: orange;
-    opacity: 0;
-    height: 0;
-}
-
-input.invalid-feedback-form+p {
-    opacity: 1;
-    height: auto;
-    margin-bottom: 20px;
+input {
+    &+p {
+        @include gradient-font;
+        font-size: 0.9em;
+        font-weight: bold;
+        opacity: 0;
+        height: 0;
+    }
+    &.invalid-feedback-form {
+        &+p {
+            opacity: 1;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    }
 }

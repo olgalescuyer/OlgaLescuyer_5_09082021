@@ -7,6 +7,7 @@ const form = document.querySelector('.needs-validation');
 // console.log(form);
 
 const btnFormSubmit = form.querySelector('.button-form-submit');
+const btnCancel = form.querySelector('.button-form-cancel');
 
 const firstName = form.querySelector('#firstName');
 const lastName = form.querySelector('#lastName');
@@ -88,7 +89,7 @@ form.addEventListener('submit', function(e) {
 
                 // --- animation de négation :
 
-                allInputsForm[i].style.background = '#ffb8b8';
+                allInputsForm[i].style.background = 'linear-gradient(142deg, rgba(220,133,37,1) 2%, rgba(146,92,247,1) 100%)';
                 allInputsForm[i].classList.add('anim-error');
 
                 setTimeout(() => {
@@ -110,14 +111,7 @@ allInputsForm.forEach(item => {
     })
 })
 
-//--- 'annuler' :
-let btnCancel = document.querySelector('.button-form-cancel');
-// console.log(btnCancel);
 
-btnCancel.addEventListener('click', function(e) {
-
-    location.reload();
-})
 
 //--- confirmer la commande :
 //-- (recupération object du formulair + productInLocalStorage) + fetch POST + redirection sur page 'confirmation de la commande'--//
@@ -161,3 +155,9 @@ function doFetchPost() {
 
         })
 }
+
+//--- 'annuler' :
+btnCancel.addEventListener('click', function(e) {
+
+    location.reload();
+})
