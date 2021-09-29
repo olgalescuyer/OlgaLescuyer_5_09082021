@@ -1,5 +1,5 @@
-.button {
-    @include btn;
+.button-custom {
+    @include btn-custom;
     transition: all 500ms ease-in-out;
     &:hover {
         opacity: .7;
@@ -18,11 +18,15 @@
         box-shadow: inherit;
         color: inherit;
     }
-     ::after {
+    &::after {
         color: $font-color !important;
     }
 }
 
-.accordion-button:not(.collapsed)::after {
-    color: $font-color!important;
+.cart__button-delete {
+    transform: scale(1.5);
+    transition: transform 500ms ease-in-out;
+    &:hover {
+        transform: scale(2);
+    }
 }

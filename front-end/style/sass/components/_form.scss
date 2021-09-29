@@ -12,26 +12,51 @@
     }
 }
 
-.not-valid {
-    border-color: red!important;
-}
-
-.is-validated {
-    border-color: green!important;
-}
-
 .invalid-feedback-form {
-    display: block;
-    width: 100%;
-    margin-top: .025rem;
-    font-size: .875rem !important;
+    @include input-valid-custom;
     color: #dc3545;
+    border: 1px solid orange;
 }
 
 .valid-feedback-form {
-    display: block;
-    width: 100%;
-    margin-top: .025rem;
-    font-size: .875rem !important;
+    @include input-valid-custom;
     color: green;
+    border: 1px solid #36cc36;
+}
+
+// ---- animation de négation :
+.anim-error {
+    animation: anim-error 0.3s ease-in-out;
+}
+
+@keyframes anim-error {
+    0% {
+        transform: translateX(0px);
+    }
+    33% {
+        transform: translateX(5px);
+    }
+    66% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+input {
+    &+p {
+        @include gradient-font;
+        font-size: 0.9em;
+        font-weight: bold;
+        opacity: 0;
+        height: 0;
+    }
+    &.invalid-feedback-form {
+        &+p {
+            opacity: 1;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    }
 }

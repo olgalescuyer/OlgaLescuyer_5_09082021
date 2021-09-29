@@ -1,11 +1,29 @@
-@mixin btn {
+@mixin btn-custom {
     color: $bg-color-primary;
     background-color: $bg-color-tertiary;
     border-color: $bg-color-tertiary;
-    border-radius: 0;
 }
 
 @mixin gradient {
     background: rgb(220, 133, 37);
     background: linear-gradient(142deg, rgba(220, 133, 37, 1) 2%, rgba(146, 92, 247, 1) 100%);
+}
+
+@mixin input-valid-custom {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    margin-top: .025rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+
+@mixin gradient-font {
+    background: linear-gradient(142deg, rgba(220, 133, 37, 1) 2%, rgba(146, 92, 247, 1) 100%);
+    text-shadow: none;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

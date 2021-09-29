@@ -3,10 +3,11 @@ var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
 })
 
 // --------------------------------------------------Validation du champ de formulaire :
-
-const form = document.querySelector('#root-form-contact');
+const form = document.querySelector('.needs-validation');
+// console.log(form);
 
 const btnFormSubmit = form.querySelector('.button-form-submit');
+const btnCancel = form.querySelector('.button-form-cancel');
 
 const firstName = form.querySelector('#firstName');
 const lastName = form.querySelector('#lastName');
@@ -14,49 +15,71 @@ const address = form.querySelector('#address');
 const city = form.querySelector('#city');
 const email = form.querySelector('#email');
 
-const inputEmail = form.querySelector(`input[type = "email"]`);
-const inputText = form.querySelectorAll(`input[type = "text"]`);
-
 const allInputsForm = form.querySelectorAll('input');
+// console.log(allInputsForm);
 
+// pour récupérer les données de l'utilisateur :
 let contact = {};
 
-// 3) vérifier si les champs sont remplis:
+//--- pour vérifier tous les champs je crée un objet avec des regex :
+const input_fields = {
+    firstName: /^[a-z\d]{2,12}$/i,
+    lastName: /^[a-z\d]{2,12}$/i,
+    address: /^[a-z\d]{2,12}$/i,
+    city: /^[a-z\d]{2,12}$/i,
+    email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
+
+}
+
+// console.log(input_fields.firstName);
+
+// la fonction ternaire qui prend en params la valeur de l'input, regex de l'objet. Elle applique la méthode .test :
+const validate = (field, regex) => {
+    regex.test(field.value) ? field.className = 'valid-feedback-form' : field.className = 'invalid-feedback-form';
+
+    // console.log(regex.test(field.value));
+
+}
+
+// pour vérifier les champs un par un :
+allInputsForm.forEach(item => item.addEventListener(
+    'keyup', e => {
+
+        validate(e.target, input_fields[e.target.attributes.name.value]);
+
+        //élément - field :
+        // console.log(e.target);
+
+        //e.target.attributes.name.value
+        //cela obtient le champ cible et va à ses attributs
+        //pour l'attribut name et vérifie la valeur de celui-ci.
+        // console.log(e.target.attributes.name.value);
+
+    }
+
+));
+
+
+// --------------------------------------------------Validation du formulaire les booutons 'confirmer' et 'annuler' :
+// --- 'confirmer' :
+
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // je rajoute la class de Bootstrap:
-    // form.classList.add('was-validated');
-
-    isValidEmail();
-
     // Récupérer le formulaire dans l 'objet à condition que tous les champs soient remplis - true :
-    if (doValidEmail(form.email.value) && form.firstName.value && form.lastName.value && form.address.value && form.city.value) {
+    if (input_fields.firstName.test(form.firstName.value) && input_fields.lastName.test(form.lastName.value) && input_fields.address.test(form.address.value) && input_fields.city.test(form.city.value) && input_fields.email.test(form.email.value)) {
         contact = {
-            firstName: form.firstName.value,
-            lastName: form.lastName.value,
-            address: form.address.value,
-            city: form.city.value,
-            email: form.email.value
-        }
-        console.log(contact);
-
+                firstName: form.firstName.value,
+                lastName: form.lastName.value,
+                address: form.address.value,
+                city: form.city.value,
+                email: form.email.value
+            }
+            // console.log(contact);
 
         doFetchPost();
 
-
-
     } else {
-
-        // je mets la class de bootstrap :
-        form.classList.add('was-validated');
-
-        // pour eviter la duplication des erreurs :
-        let errors = form.querySelectorAll('.invalid-feedback');
-
-        for (let i = 0; i < errors.length; i++) {
-            errors[i].remove();
-        }
 
         // pour les champs non-remplis :
         for (let i = 0; i < allInputsForm.length; i++) {
@@ -64,136 +87,40 @@ form.addEventListener('submit', function(e) {
             // condition pour les champs non-remplis :
             if (!allInputsForm[i].value) {
 
-                let error = document.createElement('div');
+                // --- animation de négation :
 
-                // je mets la class de bootstrap :
-                error.className = 'invalid-feedback';
-                error.innerHTML = 'Veuillez remplir ce champ !';
-                allInputsForm[i].parentElement.appendChild(error, allInputsForm[i]);
+                allInputsForm[i].style.background = 'linear-gradient(142deg, rgba(220,133,37,1) 2%, rgba(146,92,247,1) 100%)';
+                allInputsForm[i].classList.add('anim-error');
 
+                setTimeout(() => {
 
-                // console.log(allInputsForm[i]);
+                    allInputsForm[i].classList.remove('anim-error');
+
+                }, 500)
 
             }
 
         }
-
     }
 
 });
-
-// la function de vérification de reGex :
-function isValidEmail() {
-
-    // je crée un élément auquel je vais assigner des class de message d'erreur :
-    let valid = document.createElement('div');
-
-    // pour eviter la duplication :
-    removeErrorMessage();
-    removeConfirmMessege();
-
-    // les condition d'application de la fonction isValid :
-    if (!doValidEmail(form.email.value) && form.email.value) {
-
-        // je enleve la responsabilité de bootstrap car il tolère les faute :
-        form.classList.remove('was-validated');
-
-        // je mets la class  :
-        valid.className = 'invalid-feedback-form';
-        valid.innerHTML = 'L’adresse e-mail est-elle bien valide ? Voici un exemple de format : votre.nom@domaine.fr';
-        form.email.parentElement.appendChild(valid, form.email);
-
-    } else if (doValidEmail(form.email.value)) {
-
-        valid.classList.toggle('valid-feedback-form');
-
-        // je mets la class :
-        valid.className = 'valid-feedback-form';
-        valid.innerHTML = 'L’adresse e-mail est bien valide !';
-        form.email.parentElement.appendChild(valid, form.email);
-
-        // console.log(form.email.value);
-    }
-}
-
-//pour eviter la duplication de message sous les champs de validation j'applaqque la fonction avec une boucle :
-removeErrorMessage = function() {
-
-    let errors = form.querySelectorAll('.invalid-feedback-form');
-
-    for (let i = 0; i < errors.length; i++) {
-        errors[i].remove();
-
-    }
-
-}
-removeConfirmMessege = function() {
-
-    let confirm = form.querySelectorAll('.valid-feedback-form');
-
-    for (let i = 0; i < confirm.length; i++) {
-        confirm[i].remove();
-
-    }
-}
-
-
-// 2) les fonctions de verification reGex elles-même :
-//--- pour les éléments textuelles :
-
-// function doValidText(valueText) {
-
-//     return /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]{2,20}$/.test(valueText);
-// }
-
-// //--- pour les éléments de l'adresse :
-// function doValidAddress(valueAddress) {
-
-//     return /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]{2,20}$/.test(valueAddress);
-// }
-
-// //--- pour un élément email : 
-function doValidEmail() {
-
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email.value)) {
-        return (true)
-    }
-
-    return (false)
-}
-
-// function doValidEmail(valueEmail) {
-
-//     const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-//     return re.test(String(valueEmail).toLowerCase(valueEmail));
-
-// }
-
-// // --------------------------------------------------Validation du formulaire - les bouttons 'confirmer' et 'annuler' :
-
-//--- annuler :
-let btnCancel = document.querySelector('.button-form-cancel');
-// console.log(btnCancel);
-
-btnCancel.addEventListener('click', function(e) {
-
-    location.reload();
+// pour enlever la couleur rouge de l'animation de négation sur les champs de l'input :
+allInputsForm.forEach(item => {
+    item.addEventListener('click', () => {
+        item.style.background = "white";
+    })
 })
+
+
 
 //--- confirmer la commande :
 //-- (recupération object du formulair + productInLocalStorage) + fetch POST + redirection sur page 'confirmation de la commande'--//
-
-
-
-
 
 function doFetchPost() {
 
     const urlOrder = 'http://localhost:3000/api/cameras/order';
 
-
-
-    // pour recupérer des id des products :
+    // pour recupérer les id des products :
     let products = [];
 
     productInLocalStorage.forEach(product => {
@@ -213,18 +140,12 @@ function doFetchPost() {
         .then(response => response.json())
         .then(function(response) {
 
-
-
             // console.log(response["orderId"]);
 
             // je crée la clé pour localStorage et envoie :
             localStorage.setItem("order", response["orderId"]);
 
-
-
             console.log(productInLocalStorage);
-
-
 
             location.replace("confirmation.html");
         })
@@ -234,3 +155,9 @@ function doFetchPost() {
 
         })
 }
+
+//--- 'annuler' :
+btnCancel.addEventListener('click', function(e) {
+
+    location.reload();
+})
