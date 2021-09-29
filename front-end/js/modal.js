@@ -111,8 +111,6 @@ allInputsForm.forEach(item => {
     })
 })
 
-
-
 //--- confirmer la commande :
 //-- (recupération object du formulair + productInLocalStorage) + fetch POST + redirection sur page 'confirmation de la commande'--//
 
