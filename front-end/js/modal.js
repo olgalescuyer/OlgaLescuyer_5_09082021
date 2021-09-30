@@ -79,6 +79,8 @@ form.addEventListener('submit', function(e) {
 
         doFetchPost();
 
+        localStorage.removeItem('product');
+
     } else {
 
         // pour les champs non-remplis :
