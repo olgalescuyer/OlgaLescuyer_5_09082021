@@ -23,23 +23,23 @@ let contact = {};
 
 //--- pour vérifier tous les champs je crée un objet avec des regex :
 const input_fields = {
-    firstName: /^[a-z\d]{2,12}$/i,
-    lastName: /^[a-z\d]{2,12}$/i,
-    address: /^[a-z\d]{2,12}$/i,
-    city: /^[a-z\d]{2,12}$/i,
+    firstName: /^[a-zA-Z\u0080-\u024F\s\,-]{2,25}$/i,
+    lastName: /^[a-zA-Z\u0080-\u024F\s\,-]{2,25}$/i,
+    address: /^[a-zA-Z0-9\u0080-\u024F\s\.,-]{5,40}$/i,
+    city: /^[a-zA-Z\u0080-\u024F]+(?:([\ \-\']|(\.\ ))[a-zA-Z\u0080-\u024F]+)*$/i,
     email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
 
-}
+};
 
 // console.log(input_fields.firstName);
 
-// la fonction ternaire qui prend en params la valeur de l'input, regex de l'objet. Elle applique la méthode .test :
+// la fonction-expression ternaire qui prend en params la valeur de l'input, regex de l'objet. Elle applique la méthode .test :
 const validate = (field, regex) => {
     regex.test(field.value) ? field.className = 'valid-feedback-form' : field.className = 'invalid-feedback-form';
 
     // console.log(regex.test(field.value));
 
-}
+};
 
 // pour vérifier les champs un par un :
 allInputsForm.forEach(item => item.addEventListener(
@@ -104,7 +104,7 @@ form.addEventListener('submit', function(e) {
     }
 
 });
-// pour enlever la couleur rouge de l'animation de négation sur les champs de l'input :
+// pour enlever la couleur des inputs de l'animation de négation sur les champs de l'input :
 allInputsForm.forEach(item => {
     item.addEventListener('click', () => {
         item.style.background = "white";
