@@ -26,7 +26,7 @@ const input_fields = {
     firstName: /^[a-zA-Z\u0080-\u024F\s\,-]{2,25}$/i,
     lastName: /^[a-zA-Z\u0080-\u024F\s\,-]{2,25}$/i,
     address: /^[a-zA-Z0-9\u0080-\u024F\s\.,-]{5,40}$/i,
-    city: /^[a-zA-Z\u0080-\u024F]+(?:([\ \-\']|(\.\ ))[a-zA-Z\u0080-\u024F]+)*$/i,
+    city: /^[a-zA-Z\u0080-\u024F\s\,-]{2,50}$/i,
     email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
 
 };
@@ -78,6 +78,8 @@ form.addEventListener('submit', function(e) {
             // console.log(contact);
 
         doFetchPost();
+
+        localStorage.removeItem('product');
 
     } else {
 
