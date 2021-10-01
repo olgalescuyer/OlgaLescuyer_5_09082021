@@ -113,10 +113,8 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
     productInLocalStorage.forEach((product) => {
 
-        // console.log(product);
-        // console.log(productInLocalStorage);
-
-
+        console.log(product.lense);
+        console.log(productInLocalStorage);
 
         idProduct = product.id;
         // console.log(idProduct);
