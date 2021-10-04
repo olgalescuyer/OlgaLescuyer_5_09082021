@@ -69,7 +69,9 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
 
         <div class="d-lg-flex" >
 
-        <div class="content-cart-left" id="root-cart-product"></div> 
+        <div class="content-cart-left" >
+            <fieldset class=""id="root-cart-product"></fieldset>
+        </div> 
 
 
         <div class=" d-flex content-cart-right" id="root-cart-counter">
@@ -126,7 +128,8 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
         htmlElementsCartProduct += `
            
             <div class="row border border-2 border-bottom-0 border-start-0 border-end-0 p-2 g-0 " >
-                <div class="col-sm-3 d-flex flex-column justify-content-center p-2 g-0">
+
+                <div class="col-md-3 d-flex flex-column justify-content-center p-2 g-0">
                     <div class="page-cart__image">
 
                         <div class="page-cart__product-image">
@@ -139,34 +142,57 @@ if (productInLocalStorage === null || productInLocalStorage == 0) {
                 </div>
 
                
-                <div class="col-sm-4 d-flex flex-column justify-content-center p-2">
-                    <h2 class="fs-3  product-name" id="">${product.name}</h2>
-                    <p class="fs-5 m-0  product-option">Lentille : ${product.lense}</p>
-                </div>
-                <div class="col-sm-1 d-flex flex-column justify-content-center p-2">
-                    <select name="selectQuantity" id="selectQuantity"> 
-                        <option value="1">1</option>
+                <div class="col-md-9 d-flex flex-column justify-content-center p-2">
+
+                    <div class="row">
+
+                        <div class="col-sm-5">
+                            <h2 class="fs-4  product-name" id="">${product.name}</h2>
+                            <p class="fs-6 product-option">Lentille : ${product.lense}</p>
+                                  
+                        </div>
+                
+                        <div class="col-sm-7 ">
+
+                            <div class="row justify-content-around align-items-center g-0">
+
+                                <div class="col-2 py-2">
+
+                                    <div class="d-flex ">
+                                        <button class="cart__button-delete d-flex ps-sm-1" id="">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                
+                                           
+                                <div class="d-flex justify-content-around col-8 p-2">
+                                <span class="fs-5 product-price">Prix: ${price}</span>
+                                </div>
+
+                                <div class="col-2 d-flex justify-content-end">
+
+                                    <select name="selectQuantity" class="w-75 d-block" id="selectQuantity"> 
+                                    <option value="1">1</option>
                       
-                    </select>
-                </div>
-                <div class="col-sm-3 d-flex flex-column justify-content-center p-2">
-                    <span class="fs-4 product-price">Prix: ${price}</span>
-                </div>
+                                    </select>
 
-                <div class="col-sm-1 d-flex flex-column justify-content-center p-2 ">
+                                </div>
 
-                <div class="d-flex">
-                <button class="cart__button-delete" id="">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                </svg>
-                </button>
-                </div>
+                               
+
+                            </div>
+
+                    </div>
                   
-                   
+                   </div>
                 
                 </div>
+
             </div>
     
     `;
